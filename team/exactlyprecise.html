@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ng Wei Le - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ng Wei Le - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-mindef-duty-planner"><a class="link" href="#project-mindef-duty-planner">PROJECT: MINDEF Duty Planner</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Duty Planner is a desktop address book application used foradding MINDEF personnel, and assigning and handling duties for the personnel involed. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10kLoC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>accounts for different users, and other user functionalities</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Different personnel stored in the Duty Planner can log in. Accounts have 2 types: General and Admin, which can act differently for some commands. Some commands target the specific user.</p>
+</li>
+<li>
+<p>Justification: This feature allows for commands that target the specific user (like swap duty, or edit own details). It also allows for commands like delete to be allowed for admins but not general users.</p>
+</li>
+<li>
+<p>Highlights: The enhancement affects the Person model, and existing and future commands that may be added in the future.  Many design alternatives were considered, and the implementation was difficult since it affects current commands, models and test cases.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: edited the edit command to allow user to edit his own information (except NRIC and account type).</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/commands" class="bare">https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/commands</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/storage/JsonAdaptedPerson.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/storage/JsonAdaptedPerson.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/Logic.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/Logic.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/LogicManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/LogicManager.java</a>, <a href="https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/parser" class="bare">https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/parser</a>, <a href="https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/model/person/Person,java" class="bare">https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/model/person/Person,java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/person/Password.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/person/Password.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/Model.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/Model.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/ModelManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/ModelManager.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CalendarView.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CalendarView.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CommandBox.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CommandBox.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/LoginBox.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/LoginBox.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/NricUserPair.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/NricUserPair.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/PersonCard.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/PersonCard.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/Ui.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/Ui.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped in creating JAR file for team for version 1.3</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped other members to write CalendarView.fxml and CalendarView.java</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped group 15-3 in their UI component:
+<a href="https://github.com/CS2103-AY1819S2-W15-3/main/blob/master/src/main/resources/view/AnalyticsChart.fxml" class="bare">https://github.com/CS2103-AY1819S2-W15-3/main/blob/master/src/main/resources/view/AnalyticsChart.fxml</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="log-in"><a class="link" href="#log-in">Log in</a></h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>For Practical Exam: You may use an administrator account with Username: Admin, and Password: Admin</p>
+</li>
+<li>
+<p>For Practical Exam: In personnel list, the password of the users will be listed for your convenience.</p>
+</li>
+<li>
+<p>If you close the login window, you are still able to view the personnel list and the calendar duty list. However, you will not be able to use any commands.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Logs user into account<br>
+NRIC and passwords are case-sensitive.<br>
+Enter in NRIC and password into the top and bottom text areas respectively, press enter.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Can only be done in the login box at the start of the program.</p>
+</li>
+<li>
+<p>By default, if your password has not been changed by you or an Admin, the password is your NRIC.</p>
+</li>
+<li>
+<p>Contact an administrator if you have trouble logging in.</p>
+</li>
+<li>
+<p>If you need to change your account, exit the program, then log back into a different account.</p>
+</li>
+<li>
+<p>There are 2 types of accounts: General type accounts, and Admin (or Administrator) type accounts.</p>
+</li>
+<li>
+<p>Admin accounts have access to more commands, or more functionalities for some kind of commands.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-a-user-code-add-code"><a class="link" href="#adding-a-user-code-add-code">Adding a user : <code>add</code></a></h4>
+<div class="paragraph">
+<p>Add a user to the system with the corresponding NRIC, password, company, section, rank, name and contact number.<br>
+Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>By default, the user will be a General type account, and the password will be the NRIC.</p>
+</li>
+<li>
+<p>Password and account type can be changed using the <code>edit</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-own-details-code-edit-code"><a class="link" href="#edit-own-details-code-edit-code">Edit own details : <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Edits user&#8217;s own details. Can edit one or more fields.<br>
+Format: <code>edit INDEX [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit p/84523546 r/CPL<br>
+Edits the phone number and rank of the user to be `84523546</code> and <code>CPL</code> respectively.</p>
+</li>
+<li>
+<p><code>edit c/Hotel t/ pw/pass</code><br>
+Edits the company of the user to be <code>Hotel</code>, clears all existing tags, and changes password to 'pass'.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-any-user-s-details-code-edit-code"><a class="link" href="#edit-any-user-s-details-code-edit-code">Edit any user’s details : <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing user’s details in the personnel list.
+Format: <code>edit INDEX [nr/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD] [u/A or G]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+<li>
+<p>For account type field specified by <code>u/</code>, A corresponds to an Admin account, G corresponds to a general account.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 2 p/84523546 r/CPL u/A</code><br>
+Edits the phone number and rank of the 2nd person to be <code>84523546</code> and <code>CPL</code> respectively, and grants the person&#8217;s account administrator privileges.</p>
+</li>
+<li>
+<p><code>edit 1 c/Hotel t/ pw/pass</code><br>
+Edits the company of the 1st person to be <code>Hotel</code>, clears all existing tags, and changes passworrd to 'pass'.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="logging-in-and-account-authority-feature"><a class="link" href="#logging-in-and-account-authority-feature">Logging in and account authority feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>There are currently 2 User Types found in commons.core.index: UserType.ADMIN and UserType.General. Each NRIC account will be assigned to one of these user types that correspond to different authorities.
+Note that Admin type user accounts are not only have access to more commands, but some commands (such as edit) have more functionalities as well. The Command class implements AdminCommand and GeneralCommand interfaces.</p>
+</div>
+<div class="paragraph">
+<p>Upon logging in to the correct account, the CommandBox will be initialized with the correct user type. The execute Command in logic will decide to initialize the commands as either AdminCommand or GeneralCommand,
+to ensure the user does not have access to the wrong authority level.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-handling-logging-in-and-usertype"><a class="link" href="#aspect-handling-logging-in-and-usertype">Aspect: handling logging in and UserType</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> LogIn box handles logic of finding account, MainWindow has a User field.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: one less layer for simplicity</p>
+</li>
+<li>
+<p>Cons: UI best not to handle logic, User Type might be changed, which could be bad for administrator security.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Logging in is like a command that is handled by logic, after which Main Window is initialized with the UserType and NRIC.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Logic operations now handled by Logic class, UserType and NRIC can be final attribute to make sure no one gets the wrong account/ permission for each window.</p>
+</li>
+<li>
+<p>Cons: Command from logging in should be different from 'command' class to prevent undos or redos from happening.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-12 17:27:11 UTC</div></div></div></body></html>

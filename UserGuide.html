@@ -13,38 +13,21 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. User Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#log-in-code-login-code-code-not-implemented-yet-code">3.2. Log in : <code>login</code> <code>Not implemented yet</code></a></li>
-<li><a href="#log-out-code-logout-code-code-not-implemented-yet-code">3.3. Log out : <code>logout</code> <code>Not implemented yet</code></a></li>
-<li><a href="#change-password-code-chpass-code-code-not-implemented-yet-code">3.4. Change password : <code>chpass</code> <code>Not implemented yet</code></a></li>
-<li><a href="#view-duties-assigned-to-user-code-view-code-code-not-implemented-yet-code">3.5. View duties assigned to user : <code>view</code> <code>Not implemented yet</code></a></li>
-<li><a href="#view-duties-assigned-to-other-users-code-view-code-code-not-implemented-yet-code">3.6. View duties assigned to other users : <code>view</code> <code>Not implemented yet</code></a></li>
-<li><a href="#view-roster-code-roster-code-code-not-implemented-yet-code">3.7. View roster : <code>roster</code> <code>Not implemented yet</code></a></li>
-<li><a href="#block-dates-code-block-code">3.8. Block dates : <code>block</code></a></li>
-<li><a href="#view-blocked-dates-code-block-code">3.9. View blocked dates : <code>block</code></a></li>
-<li><a href="#find-who-is-assigned-duty-today-code-who-code">3.10. Find who is assigned duty today : <code>who</code></a></li>
-<li><a href="#find-who-is-assigned-duty-on-a-given-day-code-who-code">3.11. Find who is assigned duty on a given day : <code>who</code></a></li>
-<li><a href="#make-a-swap-request-with-another-user-code-swap-code">3.12. Make a swap request with another user : <code>swap</code></a></li>
-<li><a href="#finding-another-person-code-find-code">3.13. Finding another person: <code>find</code></a></li>
-<li><a href="#filter-people-code-filter-code">3.14. Filter people: <code>filter</code></a></li>
-<li><a href="#exit-code-exit-code">3.15. Exit : <code>exit</code></a></li>
+<li><a href="#log-in">3.1. Log in</a></li>
+<li><a href="#features-for-all-users">3.2. Features for all users</a></li>
+<li><a href="#general-features">3.3. General Features</a></li>
+<li><a href="#admin-features">3.4. Admin Features</a></li>
+<li><a href="#saving-the-data">3.5. Saving the data</a></li>
 </ul>
 </li>
-<li><a href="#admin-features">4. Admin Features</a>
+<li><a href="#faq">4. FAQ</a></li>
+<li><a href="#command-summary">5. Command Summary</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-for-admin-code-helpadmin-code">4.1. Viewing help for admin : <code>helpadmin</code></a></li>
-<li><a href="#add-a-user-code-add-code">4.2. Add a user : <code>add</code></a></li>
-<li><a href="#delete-a-user-code-delete-code">4.3. Delete a user : <code>delete</code></a></li>
-<li><a href="#update-a-user-s-details-code-edit-code">4.4. Update a user’s details : <code>edit</code></a></li>
-<li><a href="#import-personal-details-from-a-file-code-import-code">4.5. Import personal details from a file : <code>import</code></a></li>
-<li><a href="#list-all-the-users-code-list-code">4.6. List all the users: <code>list</code></a></li>
-<li><a href="#scheduling-duties-code-schedule-code">4.7. Scheduling duties : <code>schedule</code></a></li>
-<li><a href="#extra-duty-code-extra-code">4.8. Extra duty : <code>extra</code></a></li>
-<li><a href="#saving-the-data">4.9. Saving the data</a></li>
+<li><a href="#all-users">5.1. All Users</a></li>
+<li><a href="#general-accounts">5.2. General accounts</a></li>
+<li><a href="#admin-accounts">5.3. Admin accounts</a></li>
 </ul>
 </li>
-<li><a href="#faq">5. FAQ</a></li>
-<li><a href="#command-summary">6. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -52,7 +35,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DutyPlanner is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It is a software designed to automate the process of assigning guard duties for soldiers in the Singapore Armed Forces, so that the commanders no longer have to manually assign the dates.</p>
+<p>MINDEF Duty Planner is a platform to assist military units in the SAF in the assignment of daily duties amongst the servicemen. The application is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). The software is designed to automate the process of fairly assigning duties to available servicemen for an entire month. It also enables servicemen to conveniently indicate the days they are unavailable for duty. It seeks to fairly distribute duties by taking into account the varying importance of each duty (e.g. Sunday duties are worth more than weekday duties).</p>
 </div>
 </div>
 </div>
@@ -65,7 +48,17 @@
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>{To be added}</p>
+<p>Log in into the system as an admin or a general user. NRIC corresponds to the username. Both the NRIC and the password are case-sensitive.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For admin account: NRIC is Admin, password is Admin</p>
+</li>
+<li>
+<p>For general account: NRIC is the user&#8217;s NRIC, password is NRIC by default which can be changed.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
@@ -79,7 +72,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>list</code></strong> : lists all contacts</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>add</code></strong><code>n/John Doe nr/S9012345N p/98765432 c/Echo s/2 r/CFC t/injured</code>  : adds a personnel named <code>John Doe</code> to the Personnel Database.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
@@ -93,6 +86,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <li>
 <p>Refer to <a href="#Features">Section 3, &#8220;User Features&#8221;</a> for details of each command.</p>
 </li>
+<li>
+<p>Some commands can only be accessed by Admin type accounts and some by General type accounts.</p>
+</li>
 </ol>
 </div>
 </div>
@@ -100,6 +96,56 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">3. User Features</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="log-in"><a class="link" href="#log-in">3.1. Log in</a></h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>For Practical Exam: You may use an administrator account with Username: Admin, and Password: Admin</p>
+</li>
+<li>
+<p>For Practical Exam: In personnel list, the password of the users will be listed for your convenience.</p>
+</li>
+<li>
+<p>If you close the login window, you are still able to view the personnel list and the calendar duty list. However, you will not be able to use any commands.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Logs user into account<br>
+NRIC and passwords are case-sensitive.<br>
+Enter in NRIC and password into the top and bottom text areas respectively, press enter.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Can only be done in the login box at the start of the program.</p>
+</li>
+<li>
+<p>By default, if your password has not been changed by you or an Admin, the password is your NRIC.</p>
+</li>
+<li>
+<p>Contact an administrator if you have trouble logging in.</p>
+</li>
+<li>
+<p>If you need to change your account, exit the program, then log back into a different account.</p>
+</li>
+<li>
+<p>There are 2 types of accounts: General type accounts, and Admin (or Administrator) type accounts.</p>
+</li>
+<li>
+<p>Admin accounts have access to more commands, or more functionalities for some kind of commands.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -108,7 +154,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>login n/NRIC</code>, <code>NRIC</code> is a parameter which can be used as <code>add n/S01234567Z</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>login nr/NRIC</code>, <code>NRIC</code> is a parameter which can be used as <code>add n/S01234567Z</code>.</p>
 </li>
 <li>
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
@@ -119,71 +165,56 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
 </li>
+<li>
+<p>An Admin and a User may have different formats for the same command</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<h3 id="features-for-all-users"><a class="link" href="#features-for-all-users">3.2. Features for all users</a></h3>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.2.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Lists out a list of commands &amp; instructions<br>
 Format: <code>help</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="log-in-code-login-code-code-not-implemented-yet-code"><a class="link" href="#log-in-code-login-code-code-not-implemented-yet-code">3.2. Log in : <code>login</code> <code>Not implemented yet</code></a></h3>
+<div class="sect3">
+<h4 id="list-all-the-users-code-list-code"><a class="link" href="#list-all-the-users-code-list-code">3.2.2. List all the users: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Log user into their account.<br>
-NRIC and password are case-sensitive.<br>
-Format: <code>login n/NRIC pw/PASSWORD</code></p>
+<p>Lists out all users with their details.<br>
+Format: <code>list</code></p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="view-all-duties-for-current-month-code-viewcurrent-code"><a class="link" href="#view-all-duties-for-current-month-code-viewcurrent-code">3.2.3. View all duties for current month: <code>viewCurrent</code></a></h4>
 <div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>login n/S01234567Z pw/cs2103noteasy</code></p>
-</li>
-</ul>
+<p>Brings up calendar view, with all duties for the current month.<br>
+Format: <code>viewCurrent</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="log-out-code-logout-code-code-not-implemented-yet-code"><a class="link" href="#log-out-code-logout-code-code-not-implemented-yet-code">3.3. Log out : <code>logout</code> <code>Not implemented yet</code></a></h3>
+<div class="sect3">
+<h4 id="view-all-duties-for-enxt-month-code-viewnext-code"><a class="link" href="#view-all-duties-for-enxt-month-code-viewnext-code">3.2.4. View all duties for enxt month: <code>viewNext</code></a></h4>
 <div class="paragraph">
-<p>Logs the user out of the account<br>
-Format : <code>logout</code></p>
+<p>Brings up calendar view, with all duties for the next month.<br>
+Format: <code>viewNext</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="change-password-code-chpass-code-code-not-implemented-yet-code"><a class="link" href="#change-password-code-chpass-code-code-not-implemented-yet-code">3.4. Change password : <code>chpass</code> <code>Not implemented yet</code></a></h3>
-<div class="paragraph">
-<p>Changes password of the user to a new one. The system will prompt the user to reconfirm the new password.<br>
-Format: `chpass pw/CURRENT_PASSWORD pw/NEW_PASSWORD</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>chpass pw/cs2103noteasy pw/cs2103veryhard</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="view-duties-assigned-to-user-code-view-code-code-not-implemented-yet-code"><a class="link" href="#view-duties-assigned-to-user-code-view-code-code-not-implemented-yet-code">3.5. View duties assigned to user : <code>view</code> <code>Not implemented yet</code></a></h3>
+<div class="sect3">
+<h4 id="view-duties-assigned-to-user-code-view-code"><a class="link" href="#view-duties-assigned-to-user-code-view-code">3.2.5. View duties assigned to user : <code>view</code></a></h4>
 <div class="paragraph">
 <p>The user can see their details about their own duties assigned to them and their upcoming duties ranked by recency.<br>
 Format: <code>view</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="view-duties-assigned-to-other-users-code-view-code-code-not-implemented-yet-code"><a class="link" href="#view-duties-assigned-to-other-users-code-view-code-code-not-implemented-yet-code">3.6. View duties assigned to other users : <code>view</code> <code>Not implemented yet</code></a></h3>
+<div class="sect3">
+<h4 id="view-duties-assigned-to-other-users-code-view-code"><a class="link" href="#view-duties-assigned-to-other-users-code-view-code">3.2.6. View duties assigned to other users : <code>view</code></a></h4>
 <div class="paragraph">
 <p>The user can see their details about their own duties assigned to other users.<br>
-Format: <code>view NAME</code></p>
+Format: <code>view NRIC</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -191,13 +222,13 @@ Format: <code>view NAME</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>view Cassell</code></p>
+<p><code>view S9012345L</code></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="view-roster-code-roster-code-code-not-implemented-yet-code"><a class="link" href="#view-roster-code-roster-code-code-not-implemented-yet-code">3.7. View roster : <code>roster</code> <code>Not implemented yet</code></a></h3>
+<div class="sect3">
+<h4 id="view-roster-code-roster-code-code-not-implemented-yet-code"><a class="link" href="#view-roster-code-roster-code-code-not-implemented-yet-code">3.2.7. View roster : <code>roster</code> <code>Not implemented yet</code></a></h4>
 <div class="paragraph">
 <p>The user can see the full duty rosters for particular months.<br>
 Format: <code>roster MONTH</code></p>
@@ -213,28 +244,11 @@ Format: <code>roster MONTH</code></p>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="block-dates-code-block-code"><a class="link" href="#block-dates-code-block-code">3.8. Block dates : <code>block</code></a></h3>
+<div class="sect3">
+<h4 id="block-dates-code-bd-code"><a class="link" href="#block-dates-code-bd-code">3.2.8. Block dates : <code>bd</code></a></h4>
 <div class="paragraph">
-<p>The user can block dates and set which dates they are unavailable to duties for upcoming months. A user can block up to 15 days per month.<br>
-Format: <code>block MONTH DAY DAY DAY &#8230;&#8203;</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>block March 3 6 15 21 30</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="view-blocked-dates-code-block-code"><a class="link" href="#view-blocked-dates-code-block-code">3.9. View blocked dates : <code>block</code></a></h3>
-<div class="paragraph">
-<p>The user can view the dates they have blocked for a particular month.<br>
-Format: <code>block MONTH</code></p>
+<p>The user can block dates and set which dates they are unavailable to duties for the upcoming month. A user can block up to 15 days.<br>
+Format: <code>bd DATE DATE DATE &#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -242,41 +256,24 @@ Format: <code>block MONTH</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>block March</code></p>
+<p><code>bd 3 6 15 21 30</code></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="find-who-is-assigned-duty-today-code-who-code"><a class="link" href="#find-who-is-assigned-duty-today-code-who-code">3.10. Find who is assigned duty today : <code>who</code></a></h3>
+<div class="sect3">
+<h4 id="view-blocked-dates-code-block-code-coming-in-v2-0"><a class="link" href="#view-blocked-dates-code-block-code-coming-in-v2-0">3.2.9. View blocked dates : <code>block</code> (Coming in v2.0)</a></h4>
 <div class="paragraph">
-<p>The user can find out which person is assigned duty today.<br>
-Format: <code>who</code></p>
+<p>The user can view the dates they have blocked for the upcoming month.<br>
+Format: <code>block</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="find-who-is-assigned-duty-on-a-given-day-code-who-code"><a class="link" href="#find-who-is-assigned-duty-on-a-given-day-code-who-code">3.11. Find who is assigned duty on a given day : <code>who</code></a></h3>
-<div class="paragraph">
-<p>The user can find out which person is assigned duty on a given day.<br>
-Format: <code>who DATE</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>who 14022019</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">3.12. Make a swap request with another user : <code>swap</code></a></h3>
+<div class="sect3">
+<h4 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">3.2.10. Make a swap request with another user : <code>swap</code></a></h4>
 <div class="paragraph">
 <p>The user can request for a duty swap with another user. This will be subject to the agreement of the other user and approval of the admin (i.e. commander).<br>
 The other user and admin will be notified upon login and they will be prompted to accept or decline the request.<br>
-Format: `swap d/CURRENTDUTYDATE d/DESIREDDUTYDATE [t/MESSAGE]</p>
+Format: `swap ad/CURRENTDUTYDATE rd/DESIREDDUTYDATE</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -284,36 +281,35 @@ Format: `swap d/CURRENTDUTYDATE d/DESIREDDUTYDATE [t/MESSAGE]</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>swap d/14022019 d/21022019 t/Please help a bro out!</code></p>
+<p><code>swap ad/14022019 rd/21022019 t/Please help a bro out!</code></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="finding-another-person-code-find-code"><a class="link" href="#finding-another-person-code-find-code">3.13. Finding another person: <code>find</code></a></h3>
+<div class="sect3">
+<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.2.11. Locating persons by name: <code>find</code></a></h4>
 <div class="paragraph">
-<p>The user can find people whose names contain any of the given keywords. Information of the person’s rank. company, section and contact number can be seen.<br>
-Format: <code>find KEYWORD [MORE KEYWORDS]</code></p>
+<p>Finds persons whose names contain any of the given keywords.<br>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="filter-people-code-filter-code"><a class="link" href="#filter-people-code-filter-code">3.14. Filter people: <code>filter</code></a></h3>
-<div class="paragraph">
-<p>The user can list out the people who are within the filtered rank, date, or company. The list can be sorted in ascending or descending order.<br>
-Format: <code>filter [A or D] [s/STARTDATE] [e/ENDDATE] [r/RANK] [c/COMPANY] [s/SQUAD]</code></p>
-</div>
-<div class="exampleblock">
+<div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Default ordering is alphabetical order, ascending</p>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
 </li>
 <li>
-<p>A or D specifies if ordering is ascending or descending</p>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Dates to be entered in ddmmyyyy format.</p>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 </ul>
 </div>
@@ -325,152 +321,439 @@ Format: <code>filter [A or D] [s/STARTDATE] [e/ENDDATE] [r/RANK] [c/COMPANY] [s/
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter</code><br>
-Lists down all personnel, without any filtering, sorted in ascending order by default</p>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>filter D s/11022019 e/11032019 r/PTE</code><br>
-Lists down all personnel with rank Private and available dates between 11-Feb-2019 and 11-March-2019, in descending alphabetical order.</p>
+<p><code>find Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.15. Exit : <code>exit</code></a></h3>
+<div class="sect3">
+<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.2.12. Listing entered commands : <code>history</code></a></h4>
+<div class="paragraph">
+<p>Lists all the commands that you have entered in reverse chronological order.<br>
+Format: <code>history</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.2.13. Undoing previous command : <code>undo</code></a></h4>
+<div class="paragraph">
+<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
+Format: <code>undo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code><br>
+<code>list</code><br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+</li>
+<li>
+<p><code>select 1</code><br>
+<code>list</code><br>
+<code>undo</code><br>
+The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.2.14. Redoing the previously undone command : <code>redo</code></a></h4>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command.<br>
+Format: <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code><br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.2.15. Exit : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program. User will be logged out automatically.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="admin-features"><a class="link" href="#admin-features">4. Admin Features</a></h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="viewing-help-for-admin-code-helpadmin-code"><a class="link" href="#viewing-help-for-admin-code-helpadmin-code">4.1. Viewing help for admin : <code>helpadmin</code></a></h3>
+<h3 id="general-features"><a class="link" href="#general-features">3.3. General Features</a></h3>
+<div class="sect3">
+<h4 id="edit-own-details-code-edit-code"><a class="link" href="#edit-own-details-code-edit-code">3.3.1. Edit own details : <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Lists out a list of commands &amp; instructions for admin.<br>
-Format: <code>helpadmin</code></p>
+<p>Edits user&#8217;s own details. Can edit one or more fields.<br>
+Format: <code>edit INDEX [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="add-a-user-code-add-code"><a class="link" href="#add-a-user-code-add-code">4.2. Add a user : <code>add</code></a></h3>
+</div>
 <div class="paragraph">
-<p>Add a user to the system with the corresponding NRIC, password, company, section, rank and contact number.<br>
-Format: <code>add n/NRIC pw/PASSWORD c/COMPANY s/SECTION r/RANK n/NAME p/CONTACTNUMBER</code></p>
+<p>Examples:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit p/84523546 r/CPL<br>
+Edits the phone number and rank of the user to be `84523546</code> and <code>CPL</code> respectively.</p>
+</li>
+<li>
+<p><code>edit c/Hotel t/ pw/pass</code><br>
+Edits the company of the user to be <code>Hotel</code>, clears all existing tags, and changes password to 'pass'.</p>
+</li>
+</ul>
 </div>
-<div class="sect2">
-<h3 id="delete-a-user-code-delete-code"><a class="link" href="#delete-a-user-code-delete-code">4.3. Delete a user : <code>delete</code></a></h3>
-<div class="paragraph">
-<p>Delete a user from the system with the corresponding NRIC. The admin will be prompted with a confirmation message.<br>
-Format: <code>delete NRIC</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="update-a-user-s-details-code-edit-code"><a class="link" href="#update-a-user-s-details-code-edit-code">4.4. Update a user’s details : <code>edit</code></a></h3>
-<div class="paragraph">
-<p>Updates a existing user’s details given an NRIC.<br>
-Format: <code>edit [n/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONENUMBER]</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="import-personal-details-from-a-file-code-import-code"><a class="link" href="#import-personal-details-from-a-file-code-import-code">4.5. Import personal details from a file : <code>import</code></a></h3>
-<div class="paragraph">
-<p>Imports personal details of users from a TXT file.<br>
-Format: <code>import [FILE_NAME.txt]</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="list-all-the-users-code-list-code"><a class="link" href="#list-all-the-users-code-list-code">4.6. List all the users: <code>list</code></a></h3>
-<div class="paragraph">
-<p>Lists out all users in the system with their details.<br>
-Format: <code>list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="scheduling-duties-code-schedule-code"><a class="link" href="#scheduling-duties-code-schedule-code">4.7. Scheduling duties : <code>schedule</code></a></h3>
-<div class="paragraph">
-<p>This command schedules the duties for the upcoming month. It takes into account the block out dates of each guard duty personnel and their extras. It will sort by available dates and distribute duties accordingly. After the algorithm computes a plausible schedule, the schedule will be displayed and admin will be prompted to either confirm the schedule or rerun the scheduler algorithm.<br>
-Format: <code>schedule MONTH</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="extra-duty-code-extra-code"><a class="link" href="#extra-duty-code-extra-code">4.8. Extra duty : <code>extra</code></a></h3>
+<h3 id="admin-features"><a class="link" href="#admin-features">3.4. Admin Features</a></h3>
+<div class="sect3">
+<h4 id="adding-a-user-code-add-code"><a class="link" href="#adding-a-user-code-add-code">3.4.1. Adding a user : <code>add</code></a></h4>
 <div class="paragraph">
-<p>Automatically allocates extra duties for a selected personnel in the upcoming month.<br>
-Format: <code>extra n/NRIC d/NUMBEROFDAYS</code></p>
+<p>Add a user to the system with the corresponding NRIC, password, company, section, rank, name and contact number.<br>
+Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>By default, the user will be a General type account, and the password will be the NRIC.</p>
+</li>
+<li>
+<p>Password and account type can be changed using the <code>edit</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.4.2. Deleting a person : <code>delete</code></a></h4>
+<div class="paragraph">
+<p>Deletes the specified person from the duty planner.<br>
+Format: <code>delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>delete 2</code><br>
+Deletes the 2nd person in the duty planner personnel list.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>delete 1</code><br>
+Deletes the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.4.3. Clearing all entries : <code>clear</code></a></h4>
+<div class="paragraph">
+<p>Clears all entries from the duty planner.<br>
+Format: <code>clear</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-any-user-s-details-code-edit-code"><a class="link" href="#edit-any-user-s-details-code-edit-code">3.4.4. Edit any user’s details : <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing user’s details in the personnel list.
+Format: <code>edit INDEX [nr/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD] [u/A or G]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+<li>
+<p>For account type field specified by <code>u/</code>, A corresponds to an Admin account, G corresponds to a general account.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>*<code>extra n/S9876543A d/7</code></p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 2 p/84523546 r/CPL u/A</code><br>
+Edits the phone number and rank of the 2nd person to be <code>84523546</code> and <code>CPL</code> respectively, and grants the person&#8217;s account administrator privileges.</p>
+</li>
+<li>
+<p><code>edit 1 c/Hotel t/ pw/pass</code><br>
+Edits the company of the 1st person to be <code>Hotel</code>, clears all existing tags, and changes passworrd to 'pass'.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="scheduling-duties-code-schedule-code"><a class="link" href="#scheduling-duties-code-schedule-code">3.4.5. Scheduling duties : <code>schedule</code></a></h4>
+<div class="paragraph">
+<p>This command invokes the scheduling algorithm for the upcoming month. It generates a viable duty schedule roster where each duty slot for the upcoming month will be filled by the people currently in the database. ++</p>
+</div>
+<div class="olist arabic">
+<div class="title">In order to ensure fair scheduling system,</div>
+<ol class="arabic">
+<li>
+<p>We introduce a point system to each individual such that a servicemen can earn points by doing duties. The points awarded to servicemen are cumulative, thus the points awarded are carried over to the next month.<br></p>
+</li>
+<li>
+<p>Each duty is worth a certain number of points and a person gains that amount of points by doing that duty. For example, if all Sunday duties are worth 4 points, a servicemen who is assigned a Sunday duty will by awarded 4 points.<br></p>
+</li>
+<li>
+<p>Before the scheduling command is called, each person has the opportunity to indicate the days in which they are unavailable to do duty. (See 3.9 block command) <br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The algorithm is optimized such that persons with low points will be allocated to duties with high points. It automatically attempts to balance out the points of each person by the end of the month.<br></p>
+</div>
+<div class="paragraph">
+<p>The duty schedule generated by the schedule command is not deterministic, calling schedule command multiple times generates different duty allocation.<br></p>
+</div>
+<div class="paragraph">
+<p>Calling the schedule command merely generates a viable shedule, but does not finalize the schedule (i.e. points awarded to each person is yet to be added). Schedule generated is also not deterministic, calling schedule command multiple times generates different duty allocation. Thus, the admin can call schedule command continuously until a satisfactory schedule is produced. To finalize the schedule, use the confirm command. (See 4.8 confirm schedule)<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>schedule</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="confirm-a-schedule-code-confirm-code"><a class="link" href="#confirm-a-schedule-code-confirm-code">3.4.6. Confirm a Schedule : <code>confirm</code></a></h4>
+<div class="paragraph">
+<p>Confirm and finalize the last generated duty schedule (from the schedule command) for the upcoming month.<br>
+Subsequent attempts to call schedule command will not result in any new duty allocation produced.<br>
+Format: <code>confirm</code></p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.9. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.5. Saving the data</a></h3>
 <div class="paragraph">
-<p>Duty roster data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>Duty roster personnel list and the duties allocated are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: What if I want to swap my duty with another person?<br>
-<strong>A</strong>: Contact the administrator with the request.</p>
+<strong>A</strong>: Use "swap" command to request a swap. If you receive no updates about it, contact your administrator.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: What is the main feature of this app?<br>
-<strong>A</strong>: The main feature is the automated scheduling algorithm, which significantly minimizes the amount of work that<br>
-the admin has to do.</p>
+<strong>A</strong>: The main feature is the automated scheduling algorithm, which significantly minimizes the amount of work that the admin has to do.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: What is my username and password?<br>
 <strong>A</strong>: Your username is by default your NRIC, used so prevalently in the SAF.<br>
-Your password will be set by the admin when they create your account but you can change the password later on<br>
-using the chpass command.</p>
+Your password is also your NRIC by default, unless you or your administrator changed it. you can use the 'edit' command to edit your password later on.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: What if I forgot my password?<br>
+<strong>A</strong>: Contact your administrator for help.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: What should I do if I need help with the app?<br>
-<strong>A</strong>: You can enter 'help' in the command line, or press Help &gt; Help, or simply press F1.<br>
-This will open up the User Guide in a new window.</p>
-</div>
-<div class="paragraph">
-<p><strong>Q</strong>: What&#8217;s the difference between 'add' and 'import'?<br>
-<strong>A</strong>: 'Add' is only able to add one user at a time and requires all the details of the user on<br>
-the command line. This is very cumbersome for the admin so we added an 'import' command that reads a<br>
-.txt file containing multiple user details, with the same parameters format as the 'add' command.</p>
+<strong>A</strong>: You can enter 'help' in the command line, or press Help &gt; Help, or simply press F1. This will open up the User Guide in a new window.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>General User<br>
-* <strong>Viewing help</strong> : <code>help</code><br>
-* <strong>Log in</strong> : <code>login n/NRIC  pw/PASSWORD</code><br>
-* <strong>Log out</strong> : <code>logout</code><br>
-* <strong>View</strong> : <code>view KEYWORD [MORE KEYWORDS]</code><br>
-* <strong>Blocking dates</strong> : <code>block d/date d/date d/date …</code><br>
-* <strong>Finding a person</strong> : <code>find KEYWORD [MORE KEYWORDS]</code><br>
-* <strong>Filter</strong> : <code>filter [A or D] [s/STARTDATE] [e/ENDDATE] [r/RANK] [c/COMPANY] [s/SQUAD]</code><br>
-* <strong>Change password</strong> : <code>chpass pw/CURRENT_PASSWORD pw/NEW_PASSWORD</code><br>
-* <strong>Exit</strong> : <code>exit</code><br>
-Admin<br>
-* <strong>Command help for admin</strong> : <code>helpAdmin</code><br>
-* <strong>Add a user</strong> : <code>addUser n/NRIC pw/PASSWORD c/COMPANY s/SECTION r/RANK n/NAME p/PHONENUMBER</code><br>
-* <strong>Delete a user</strong> : <code>deleteUser n/NRIC</code><br>
-* <strong>Edit a user</strong> : <code>editUser [n/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONENUMBER]</code><br>
-* <strong>Import personal details from a file</strong> : <code>import [FILE_NAME.txt]</code><br>
-* <strong>List all the users</strong> : <code>listUser</code><br>
-* <strong>Scheduling duties</strong> : <code>schedule m/MONTH</code><br></p>
+<div class="sect2">
+<h3 id="all-users"><a class="link" href="#all-users">5.1. All Users</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Viewing help</strong> : <code>help</code><br></p>
+</li>
+<li>
+<p><strong>Viewing own duties</strong> : <code>view</code><br></p>
+</li>
+<li>
+<p><strong>Viewing other&#8217;s duties</strong> : <code>view NRIC</code><br></p>
+</li>
+<li>
+<p><strong>Blocking dates</strong> : <code>bd DATE DATE DATE …</code><br></p>
+</li>
+<li>
+<p><strong>Make swap request</strong> : <code>swap</code><br></p>
+</li>
+<li>
+<p><strong>List all the users</strong> : <code>list</code><br></p>
+</li>
+<li>
+<p><strong>Locate person by name</strong> : <code>find</code><br></p>
+</li>
+<li>
+<p><strong>List entered commands</strong> : <code>history</code><br></p>
+</li>
+<li>
+<p><strong>Undo command</strong> : <code>undo</code><br></p>
+</li>
+<li>
+<p><strong>Redo command</strong> : <code>redo</code><br></p>
+</li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code><br></p>
+</li>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-01 15:31:10 UTC</div></div></div></body></html>
+<div class="sect2">
+<h3 id="general-accounts"><a class="link" href="#general-accounts">5.2. General accounts</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Edit own info</strong> : <code>edit [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code><br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-accounts"><a class="link" href="#admin-accounts">5.3. Admin accounts</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add a user</strong> : <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</code><br></p>
+</li>
+<li>
+<p><strong>Edit any user</strong> : <code>edit INDEX [nr/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD] [u/A or G]</code><br></p>
+</li>
+<li>
+<p><strong>Delete a user</strong> : <code>delete INDEX</code><br></p>
+</li>
+<li>
+<p><strong>Scheduling duties</strong> : <code>schedule</code><br></p>
+</li>
+<li>
+<p><strong>Confirm schedule</strong> : <code>confirm</code><br></p>
+</li>
+<li>
+<p><strong>Clear entries</strong> : <code>clear</code><br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-12 17:27:11 UTC</div></div></div></body></html>

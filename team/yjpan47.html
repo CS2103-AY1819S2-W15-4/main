@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Pan Yongjing - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Pan Yongjing - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">PROJECT: AddressBook - Level 4</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MINDEF Duty Planner is a desktop application used to help military units in the Singapore Armed Forces organise and plan monthly duties for their servicemen. It has various features and functions for administator (i.e. commander) as well as the duty personnel (i.e. servicemen). The user interacts with the application using a Command Line Interface (CLI) with a Graphic User Interface (GUI) created with JavaFX. It is written in Java, and has about 10kLoC.</p>
+</div>
+<div class="paragraph">
+<p>The Duty Planner is modified and upgraded from SE-EDU Address Book 4.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: Creation of the duty package module</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: A duty package with classes (i.e. Duty, DutyMonth, DutySettings, DutyStorage) in charge of setting up the duties of a month and assigning them to person, as well as contain vital functions needed for the duty features to be implemented.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Duty : A duty class that characterizes the attributes of a duty including the exact date, points awarded, manpower needed and a list of person eventually being assigned to that duty.</p>
+</li>
+<li>
+<p>DutyMonth : Represents a month in the calendar and is the main driver class behind the scheduling of duties. It initializes all duties and assigns them to person. Stores vital information such as the list of duties and the blocked dates of each person.</p>
+</li>
+<li>
+<p>DutySettings : Classfied as a UserPref which contains information about the manpower needs and points assigned to duties from each day of the week. Enable modification to the the mnapower needs and points assigned to each duty based on the day of the week.</p>
+</li>
+<li>
+<p>DutyStorage : Accumulates and stores the duty points earned by all the persons.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Justification: The duty package provides the backend support for all duty-related features and commands.</p>
+</li>
+<li>
+<p>Highlights: The package contain functions assessed by many commands (i.e. BlockDateCommmand, ViewCommand, ScheduleCommand, DutySettingCommand).</p>
+</li>
+<li>
+<p>Credits: {Fellow teammate Yoon Ki Hyun for working together on the DutyMonth and Duty}</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Schedule and confirm command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The schedule command that invokes the schedule algorithm to generate a viable duty allocation for the upcoming month. The confirm command finalizes the schedule and updates the existing duty points of each person.</p>
+</li>
+<li>
+<p>Justification: Enable duties to be scheduled to persons.</p>
+</li>
+<li>
+<p>Highlight: Need to ensure that the command references the correct dutyMonth and duty points of each person do not get updated until confirm command is called.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Settings command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Enable the administrator to adjust the desired manpower for duties based on the day of the week. Eanble the administrator to adjust the points to be awarded for doing duties based on the daty of the week.</p>
+</li>
+<li>
+<p>Justification: Allows the user to have flexibility to change the duty allocation system.</p>
+</li>
+<li>
+<p>Highlight: Need to ensure that the scheduling algorithm is compatible with adjustable duty points and duty capacities.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: DateUtil common</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: A class that contains static methods to assist in validation of date parameters and other date related functions.</p>
+</li>
+<li>
+<p>Justification: Contains commonly used functionalities that aids the developers and prevent duplicate code.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/Duty.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/Duty.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyMonth.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyMonth.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutySettings.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutySettings.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyStorage.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyStorage.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/DutyCalendar.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/DutyCalendar.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/commons/util/DateUtil.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/commons/util/DateUtil.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ScheduleCommand.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ScheduleCommand.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ConfirmScheduleCommand.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ConfirmScheduleCommand.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/DutySettingsCommand.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/DutySettingsCommand.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/parser/DutySettingsCommandParser.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/parser/DutySettingsCommandParser.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/UserPrefs.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/UserPrefs.java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/PersonnelDatabase.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/PersonnelDatabase.java</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.1</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Major updates to the User Guide:<br>
+<a href="https://github.com/yjpan47/main/blob/master/docs/UserGuide.adoc" class="bare">https://github.com/yjpan47/main/blob/master/docs/UserGuide.adoc</a></p>
+</li>
+<li>
+<p>Updated developer guide to include explanation of the schedule algorithm:<br>
+<a href="https://github.com/yjpan47/main/blob/master/docs/DeveloperGuide.adoc" class="bare">https://github.com/yjpan47/main/blob/master/docs/DeveloperGuide.adoc</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="scheduling-duties-code-schedule-code"><a class="link" href="#scheduling-duties-code-schedule-code">Scheduling duties : <code>schedule</code></a></h3>
+<div class="paragraph">
+<p>This command invokes the scheduling algorithm for the upcoming month. It generates a viable duty schedule roster where each duty slot for the upcoming month will be filled by the people currently in the database. ++</p>
+</div>
+<div class="olist arabic">
+<div class="title">In order to ensure fair scheduling system,</div>
+<ol class="arabic">
+<li>
+<p>We introduce a point system to each individual such that a servivemen can earn points by doing duties. The points awarded to servicemen are cumulative, thus the points awarded are carried over to the next month.<br></p>
+</li>
+<li>
+<p>Each duty is worth a certain number of points and a person gains that amount of points by doing that duty. For example, if all Sunday duties are worth 4 points, a servicemen who is assigned a Sunday duty will by awarded 4 points.<br></p>
+</li>
+<li>
+<p>Before the scheduling command is called, each person has the opportunity to indicate the days in which they are unavailable to do duty. (See 3.9 block command) <br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The algorithm is optimized such that persons with low points will be allocated to duties with high points. It automatically attempts to balance out the points of each person by the end of the month.<br></p>
+</div>
+<div class="paragraph">
+<p>The duty schedule generated by the schedule command is not deterministic, calling schedule command multiple times generates different duty allocation.<br></p>
+</div>
+<div class="paragraph">
+<p>Calling the schedule command merely generates a viable shedule, but does not finalize the schedule (i.e. points awarded to each person is yet to be added). Schedule generated is also not deterministic, calling schedule command multiple times generates different duty allocation. Thus, the admin can call schedule command continuously until a satisfactory schedule is produced. To finalize the schedule, use the confirm command. (See 4.8 confirm schedule)<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>schedule</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="confirm-a-schedule-code-confirm-code"><a class="link" href="#confirm-a-schedule-code-confirm-code">Confirm a Schedule : <code>confirm</code></a></h3>
+<div class="paragraph">
+<p>Confirm and finalize the last generated duty schedule (from the schedule command) for the upcoming month.<br>
+Subsequent attempts to call schedule command will not result in any new duty allocation produced.<br>
+Format: <code>confirm</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Algorithm</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each Person is assigned a duty score that is initialized at a fixed value. Each Person can earn duty points by covering
+duties. Weekday duties are worth 2 points; Friday duties are worth 3 points; Weekend duties are worth 4 points.</p>
+</li>
+<li>
+<p>Preparation of data</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The list of persons will be sorted according to their points in ascending order.</p>
+</li>
+<li>
+<p>The list of duties will be sorted in the order Weekend &gt;&gt; Friday &gt;&gt; Weekday.</p>
+</li>
+<li>
+<p>Person with lower duty points will be assigned to weekend duties</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Assignment</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Starting from the top of the duties list, the first person from the persons list who is available (didn&#8217;t block out the date) for that day will be assigned
+the duty. This ensures that lower score persons are given priority for weekend duties.</p>
+</li>
+<li>
+<p>The algorithm ensure that the duty score of the persons will be normalized as much as possible at the end of each month.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-12 17:27:11 UTC</div></div></div></body></html>
