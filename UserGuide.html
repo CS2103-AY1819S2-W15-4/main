@@ -37,10 +37,11 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>MINDEF Duty Planner is a platform to assist military units in the SAF in the assignment of daily guard duties amongst the servicemen.<br>
- The application is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
- The software is designed to automate the process of fairly assigning duties to available servicemen for an entire month.<br>
- The application can be used by both Commanders and servicemen to plan and view duties with various specific commands for each type of user.
- To start using MINDEF Duty Planner you can go to <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a></p>
+The application is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+The software is designed to automate the process of fairly assigning duties to available servicemen for an entire month.<br>
+The application can be used by both Commanders and servicemen to plan and view duties with various specific commands for each type of user.<br>
+To start using MINDEF Duty Planner you can go to <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a><br>
+To see a summary list of commands you can go to <a href="#command-summary">Section 6, &#8220;Command Summary&#8221;</a></p>
 </div>
 </div>
 </div>
@@ -92,7 +93,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
+<p><strong><code>list</code></strong> : lists all personnel</p>
 </li>
 <li>
 <p><strong><code>add</code></strong><code>n/John Doe nr/S9012345N p/98765432 c/Echo s/2 r/CFC t/injured</code>  : adds a personnel named <code>John Doe</code> to the Personnel Database.</p>
@@ -488,14 +489,42 @@ Edits the company of the user to be <code>Hotel</code>, clears all existing tags
 </div>
 </div>
 <div class="sect3">
-<h4 id="block-dates-code-block-code"><a class="link" href="#block-dates-code-block-code">4.3.2. Block dates : <code>block</code></a></h4>
+<h4 id="block-dates-code-block-code-br"><a class="link" href="#block-dates-code-block-code-br">4.3.2. Block dates : <code>block</code><br></a></h4>
 <div class="paragraph">
 <p>The user can block dates and set which dates they are unavailable to duties for the upcoming month. A user can block up to 15 days.<br>
 Format: <code>block DATE DATE DATE &#8230;&#8203;</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The date entered must be a valid number for the upcoming month. For example if the next month is February, block 30 is an invalid input.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
 <div class="paragraph">
 <p>This command can only be entered if next month&#8217;s duty schedule has not been confirmed yet.
 If it has been confirmed please request a swap on the day you wish to duties.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the user has successfully blocked dates they will not be scheduled for duties on the blocked days in the upcoming month.<br></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -509,17 +538,36 @@ If it has been confirmed please request a swap on the day you wish to duties.</p
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-blocked-dates-code-viewblock-code"><a class="link" href="#view-blocked-dates-code-viewblock-code">4.3.3. View blocked dates : <code>viewblock</code></a></h4>
+<h4 id="view-blocked-dates-code-viewblock-code-br"><a class="link" href="#view-blocked-dates-code-viewblock-code-br">4.3.3. View blocked dates : <code>viewblock</code><br></a></h4>
 <div class="paragraph">
 <p>The user can view the dates they have blocked for the upcoming month.<br>
-Format: <code>viewblock</code></p>
+The blocked dates for the upcoming month will then be printed out for the user to see.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>viewblock</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="remove-blocked-dates-code-removeblock-code"><a class="link" href="#remove-blocked-dates-code-removeblock-code">4.3.4. Remove blocked dates : <code>removeblock</code></a></h4>
+<h4 id="remove-blocked-dates-code-removeblock-code-br"><a class="link" href="#remove-blocked-dates-code-removeblock-code-br">4.3.4. Remove blocked dates : <code>removeblock</code><br></a></h4>
 <div class="paragraph">
-<p>The user can remove the dates they have blocked for the upcoming month.<br>
-Format: <code>removeblock</code></p>
+<p>The user can remove the dates they have blocked for the upcoming month. This will remove all blocked days from the upcoming month.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>removeblock</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A specific date cannot be removed from the list of blocked dates. If a user wishes to remove only a certain day he can removeblock and run the block command again.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -548,6 +596,36 @@ Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</cod
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>Each of the following fields entered by the user following each prefix are compulsory, and must adhere to the following format (Only the Tag field is optional):<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>NRIC</code> should be of the format [S/T/F/G][7
+][A-Z].</p>
+</li>
+<li>
+<p><code>Company</code> can take any value and should not be blank.</p>
+</li>
+<li>
+<p><code>Section</code> can take any value and should not be blank.</p>
+</li>
+<li>
+<p><code>Rank</code> must be composed of 3 alphanumerical characters, either digits or uppercase letters.</p>
+</li>
+<li>
+<p><code>Name</code> should only contain alphanumeric characters and spaces, and it should not be blank.</p>
+</li>
+<li>
+<p><code>Phone</code> should only contain numbers and a plus in front , and it should be at least 3 digits long and a maximum of 20 digits long</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.4.2. Deleting a person : <code>delete</code></a></h4>
@@ -568,12 +646,23 @@ Format: <code>delete INDEX</code></p>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
-<li>
-<p>Note that the program will exit if you delete your own account.</p>
-</li>
 </ul>
 </div>
 </div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note that the program will exit if you delete your own account.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -818,4 +907,4 @@ Your password is also your NRIC by default, unless you or your administrator cha
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 12:47:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:14:20 UTC</div></div></div></body></html>
