@@ -42,7 +42,7 @@
 <p><strong>Code contributed</strong>: [<a href="https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/commands" class="bare">https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/commands</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/storage/JsonAdaptedPerson.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/storage/JsonAdaptedPerson.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/Logic.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/Logic.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/LogicManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/logic/LogicManager.java</a>, <a href="https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/parser" class="bare">https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/logic/parser</a>, <a href="https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/model/person/Person,java" class="bare">https://github.com/exactlyprecise/main/tree/master/src/main/java/seedu/address/model/person/Person,java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/person/Password.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/person/Password.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/Model.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/Model.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/ModelManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/model/ModelManager.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CalendarView.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CalendarView.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CommandBox.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/CommandBox.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/LoginBox.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/LoginBox.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/NricUserPair.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/NricUserPair.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/PersonCard.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/PersonCard.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/Ui.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/Ui.java</a>, <a href="https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java" class="bare">https://github.com/exactlyprecise/main/blob/master/src/main/java/seedu/address/ui/UiManager.java</a>]</p>
 </li>
 <li>
-<p><strong>Other contributions</strong>:</p>
+<p><strong>Other contributions</strong>: Added functionality to Command Tests to allow testing based on UserTypes. Create test cases based on UserTypes and accounts for all previous commands.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -106,14 +106,7 @@
 <p>For Practical Exam: You may use an administrator account with Username: Admin, and Password: Admin</p>
 </li>
 <li>
-<p>For Practical Exam: In personnel list, the password of the users will be listed for your convenience.</p>
-</li>
-<li>
-<p>If you close the login window, you are still able to view the personnel list and the calendar duty list.
-However, you will not be able to use any commands.</p>
-</li>
-<li>
-<p>If you close the login window, you are still able to view the personnel list and the calendar duty list. However, you will not be able to use any commands.</p>
+<p>If you close the login window, you are still able to view the personnel list and the calendar duty list. However, you will not be able to use any commands. You may simply close the window to exit the program.</p>
 </li>
 </ul>
 </div>
@@ -151,6 +144,20 @@ The commands for each type of account are listed in <a href="#Features for all u
 </ul>
 </div>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-all-duties-for-current-month-code-viewcurrent-code"><a class="link" href="#view-all-duties-for-current-month-code-viewcurrent-code">View all duties for current month: <code>viewCurrent</code></a></h4>
+<div class="paragraph">
+<p>Brings up calendar view, with all duties for the current month.<br>
+Format: <code>viewCurrent</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-all-duties-for-next-month-code-viewnext-code"><a class="link" href="#view-all-duties-for-next-month-code-viewnext-code">View all duties for next month: <code>viewNext</code></a></h4>
+<div class="paragraph">
+<p>Brings up calendar view, with all duties for the next month.<br>
+Format: <code>viewNext</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -205,6 +212,17 @@ Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</cod
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add nr/S9012345L c/Echo s/2 r/CFC n/William Tan p/91234567 t/injured</code><br>
+Adds CFC William Tan in Echo Company Section 2 into the database.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -279,6 +297,9 @@ Format: <code>edit INDEX [nr/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/
 </li>
 <li>
 <p>The program will exit if you delete your own NRIC or change your usertype to a general account.</p>
+</li>
+<li>
+<p>If you edit another user&#8217;s NRIC, the user&#8217;s password does not automatically change to that NRIC (since the user might choose to have his own password). If you really do want to change the password to the new NRIC, please specify it in the pw/ field.</p>
 </li>
 </ul>
 </div>
@@ -376,4 +397,4 @@ to ensure the user does not have access to the wrong authority level.</p>
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:36:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:23:34 UTC</div></div></div></body></html>

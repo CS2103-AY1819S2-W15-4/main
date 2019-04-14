@@ -2166,7 +2166,7 @@ for <code>RemarkCommandParser</code>.</p>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Priority</th>
-<th class="tableblock halign-left valign-top">As a &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">As a(an) &#8230;&#8203;</th>
 <th class="tableblock halign-left valign-top">I want to &#8230;&#8203;</th>
 <th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
 </tr>
@@ -2174,15 +2174,51 @@ for <code>RemarkCommandParser</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">see Admin Help</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions specific to the administrator privileges</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">choose 2 users to swap duties</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">allow them to have their desired duty slot</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schedule the duties automatically</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">save time on scheduling</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make sure that the scheduling is correct and fair</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">promote a general user to an admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">let the user do admin work</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">let only admins to use certain commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the database will be protected</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2195,18 +2231,6 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">see usage instructions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions when I forget how to use the App</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2228,24 +2252,45 @@ for <code>RemarkCommandParser</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the personnel database</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">block certain dates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">choose not to do duty on certain dates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with duties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see my own duties</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">visual user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see all the duties in a user-friendly form</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">understand the whole schedule better</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">general user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit my own details</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>PersonnelDatabase</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-1-admin-delete-person" class="discrete">Use case 1 (Admin): Delete person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2255,13 +2300,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to list persons</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>PersonnelDatabase shows a list of persons</p>
 </li>
 <li>
 <p>User requests to delete a specific person in the list</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>PersonnelDatabase deletes the person</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2284,7 +2329,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>3a1. PersonnelDatabase shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -2294,8 +2339,209 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-2-admin-delete-person-after-schedule-for-next-month-is-confirmed" class="discrete">Use case 2 (Admin): Delete person after schedule for next month is confirmed</h3>
 <div class="paragraph">
-<p><em>{More to be added}</em></p>
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-3-admin-add-person" class="discrete">Use case 3 (Admin): Add person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-4-admin-edit-person" class="discrete">Use case 4 (Admin): Edit person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-5-admin-see-all-duties-planned-for-current-and-next-month-in-the-calendar" class="discrete">Use case 5 (Admin): See all duties planned for current and next month in the calendar</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-6-admin-see-duties-assigned-to-specific-user" class="discrete">Use case 6 (Admin): See duties assigned to specific user</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-7-admin-schedule-duties" class="discrete">Use case 7 (Admin): Schedule duties</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-8-admin-clear-all-the-database-including-duties" class="discrete">Use case 8 (Admin): Clear all the database, including duties</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-9-admin-approve-swapping-of-duties" class="discrete">Use case 9 (Admin): Approve swapping of duties</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-10-general-user-see-own-duties" class="discrete">Use case 10 (General user): See own duties</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-11-general-user-block-some-dates-for-duties-next-month" class="discrete">Use case 11 (General user): Block some dates for duties next month</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-12-general-user-log-into-the-system" class="discrete">Use case 12 (General user): Log into the system</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-13-general-user-exit-the-system" class="discrete">Use case 13 (General user): Exit the system</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.
+2.
+3.
+4.</p>
+</div>
+<div class="paragraph">
+<p>+
+Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
 </div>
 </div>
 </div>
@@ -2483,4 +2729,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:36:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:23:34 UTC</div></div></div></body></html>

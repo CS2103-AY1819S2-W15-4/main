@@ -130,14 +130,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>For Practical Exam: You may use an administrator account with Username: Admin, and Password: Admin</p>
 </li>
 <li>
-<p>For Practical Exam: In personnel list, the password of the users will be listed for your convenience.</p>
-</li>
-<li>
-<p>If you close the login window, you are still able to view the personnel list and the calendar duty list.
-However, you will not be able to use any commands.</p>
-</li>
-<li>
-<p>If you close the login window, you are still able to view the personnel list and the calendar duty list. However, you will not be able to use any commands.</p>
+<p>If you close the login window, you are still able to view the personnel list and the calendar duty list. However, you will not be able to use any commands. You may simply close the window to exit the program.</p>
 </li>
 </ul>
 </div>
@@ -259,24 +252,7 @@ Format: <code>view NRIC</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-roster-code-roster-code-code-not-implemented-yet-code"><a class="link" href="#view-roster-code-roster-code-code-not-implemented-yet-code">4.2.7. View roster : <code>roster</code> <code>Not implemented yet</code></a></h4>
-<div class="paragraph">
-<p>The user can see the full duty rosters for particular months.<br>
-Format: <code>roster MONTH</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>roster February</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">4.2.8. Make a swap request with another user : <code>swap</code></a></h4>
+<h4 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">4.2.7. Make a swap request with another user : <code>swap</code></a></h4>
 <div class="paragraph">
 <p>The user can request for a duty swap with another user. This will be subject to the agreement of the other user and approval of the admin (i.e. commander).<br>
 The other user and admin will be notified upon login and they will be prompted to accept or decline the request.<br>
@@ -294,7 +270,7 @@ Format: `swap ad/CURRENTDUTYDATE rd/DESIREDDUTYDATE</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.2.9. Locating persons by name: <code>find</code></a></h4>
+<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.2.8. Locating persons by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -339,7 +315,7 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.2.10. Listing entered commands : <code>history</code></a></h4>
+<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.2.9. Listing entered commands : <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -360,7 +336,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.2.11. Undoing previous command : <code>undo</code></a></h4>
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.2.10. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -373,11 +349,24 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands:<br>
+those commands that modify the personnel database&#8217;s person list (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>),<br>
+<code>confirm</code> command for scheduling</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>schedule</code> command cannot be undo&#8217;d, because it does not modify the personnel database directly until confirmed.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -405,7 +394,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect3">
-<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.2.12. Redoing the previously undone command : <code>redo</code></a></h4>
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.2.11. Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -433,11 +422,16 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <code>redo</code> (reapplies the <code>delete 1</code> command)<br>
 <code>redo</code> (reapplies the <code>clear</code> command)<br></p>
 </li>
+<li>
+<p><code>schedule</code><br>
+<code>confirm</code><br>
+<code>undo</code> (reverses the <code>confirm</code> command)</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">4.2.13. Exit : <code>exit</code></a></h4>
+<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">4.2.12. Exit : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program. User will be logged out automatically.<br>
 Format: <code>exit</code></p>
@@ -626,6 +620,17 @@ Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</cod
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add nr/S9012345L c/Echo s/2 r/CFC n/William Tan p/91234567 t/injured</code><br>
+Adds CFC William Tan in Echo Company Section 2 into the database.</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect3">
 <h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.4.2. Deleting a person : <code>delete</code></a></h4>
@@ -720,6 +725,9 @@ Format: <code>edit INDEX [nr/NRIC] [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/
 <li>
 <p>The program will exit if you delete your own NRIC or change your usertype to a general account.</p>
 </li>
+<li>
+<p>If you edit another user&#8217;s NRIC, the user&#8217;s password does not automatically change to that NRIC (since the user might choose to have his own password). If you really do want to change the password to the new NRIC, please specify it in the pw/ field.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -776,8 +784,24 @@ Edits the company of the 1st person to be <code>Hotel</code>, clears all existin
 <h4 id="confirm-a-schedule-code-confirm-code"><a class="link" href="#confirm-a-schedule-code-confirm-code">4.4.6. Confirm a Schedule : <code>confirm</code></a></h4>
 <div class="paragraph">
 <p>Confirm and finalize the last generated duty schedule (from the schedule command) for the upcoming month.<br>
-Subsequent attempts to call schedule command will not result in any new duty allocation produced.<br>
-Format: <code>confirm</code></p>
+Subsequent attempts to call schedule command will not result in any new duty allocation produced.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Schedules can only be confirmed if all of the duties are filled.</p>
+</li>
+<li>
+<p>The duties are only saved after confirming.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>confirm</code></p>
 </div>
 </div>
 </div>
@@ -799,7 +823,7 @@ There is no need to save manually.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: What is the main feature of this app?<br>
-<strong>A</strong>: The main feature is the automated scheduling algorithm, which significantly minimizes the amount of work that the admin has to do.</p>
+<strong>A</strong>: The main feature is the automated duty allocation system, which significantly minimizes the amount of work that the admin has to do.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: What is my username and password?<br>
@@ -907,4 +931,4 @@ Your password is also your NRIC by default, unless you or your administrator cha
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:36:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:23:34 UTC</div></div></div></body></html>
