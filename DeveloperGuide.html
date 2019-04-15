@@ -82,6 +82,7 @@
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
 <li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#blockdatecommand-tests">H.4. BlockDateCommand Tests</a></li>
 </ul>
 </li>
 </ul>
@@ -607,7 +608,6 @@ Using certain command words, the PersonnelDatabase Parser determines what the co
 </div>
 <div class="paragraph">
 <p>Step 3 :<br>
-The BlockDateCommandParser
 The BlockDateCommandParser takes in the dates list as a String and parses it into a Integer List which is used in the model.
 The BlockDateCommandParser then passes in the Integer List, userType and userName to BlockDateCommand.
 It checks for valid Integer inputs for days in the next month and will throw an exception if the dates entered are not valid</p>
@@ -647,6 +647,89 @@ MAX_BLOCKS_NUMBER in BlockDateCommand</p>
 <p>Step 5 :<br>
 The BlockDateCommand then passes the Integer List to the model where it is stored in a Hashmap in DutyMonth.
 DutyMonth has a Hashmap&lt;Person, List&lt;Integer&gt;&gt; blockedDays object to allow it to store the blockedDays of every person for the upcoming month.</p>
+</div>
+<div class="paragraph">
+<p>Step 6 :<br>
+The algorithm for scheduling was then modified to prevent the user from not doing duties on their blockedDays. This was done with the assistance of the HashMap.
+During scheduling when a person is assigned to a day the model checks the list of blocked dates. If the person has a blocked day on the assigned duty, they are assigned a new one.
+Someone else will then replace them in the previously assigned duty.
+A more detailed explanation of the scheduling algorithm is in <a href="#duty-settings">Section 3.5.6, &#8220;Duty Settings&#8221;</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations:</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current implementation): BlockDateCommand takes in a few dates they are then stored in the personnel database as a Hashmap.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement as a new Command. Parsers have already been set up in address book and adding a new command is relatively easy to implement.
+<strong>*The command storing the Integer List in the PersonnelDatabase in a HashMap is also convenient for the other commands such as <code>viewblock</code> and `removeblock.
+</strong>*The Hashmap allows easy referencing for these commands. The Hashmap also allows for easier scheduling when the scheduler is run.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The BlockDateCommand would directly modify the HashMap in the PersonnelDatabase and this would go against the n-tier architecture of the PersonnelDatabase Program. This would break the abstraction principle</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Implemented Fix for Cons :
+</strong>* To combat the above issue, Model was given methods to add the blockedDates into the Personnel Database rather than the command itself.
+This allows the logic to pass the dates to the model which would then integrate it into the Personnel Database.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2 (current implementation): BlockDateCommand takes in a few dates they are then stored as a new Class called BlockedDates</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement as a new Command. Parsers have already been set up in address book and adding a new command is relatively easy to implement.</p>
+</li>
+<li>
+<p>Would be clear what the BlockedDate Class does and also if other forms of dates such as AppointmentDates have to be added in later this would help with integrating them.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The implementation of a BlockedDate Class would complicated the process of integrating into the schedule much harder.
+Implementing the BlockedDate into the algorithm would be a lot harder and would take more time and effort.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -783,7 +866,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1138,7 +1221,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.9. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.9. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-storage-of-duty-issues"><a class="link" href="#aspect-storage-of-duty-issues">Aspect: storage of Duty issues</a></h5>
 <div class="ulist">
@@ -1281,7 +1364,7 @@ to ensure the user does not have access to the wrong authority level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-handling-logging-in-and-usertype"><a class="link" href="#aspect-handling-logging-in-and-usertype">Aspect: handling logging in and UserType</a></h5>
 <div class="ulist">
@@ -1521,7 +1604,7 @@ These template files are written in a mixture of <a href="https://www.ruby-lang.
 <div class="paragraph">
 <p>Modifying the template files in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/docs/templates"><code>docs/templates</code></a> requires some knowledge and experience with Ruby and Asciidoctor&#8217;s API.
 You should only modify them if you need greater control over the site&#8217;s layout than what stylesheets can provide.
-The SE-EDU team does not provide support for modified template files.</p>
+The [W15 - 4] team does not provide support for modified template files.</p>
 </div>
 </td>
 </tr>
@@ -2598,6 +2681,12 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">edit my own details</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">general user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my blocked dates</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2709,60 +2798,24 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-3-admin-add-person" class="discrete">Use case 3 (Admin): Add person</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
-</div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<h3 id="use-case-4-admin-edit-person" class="discrete">Use case 4 (Admin): Edit person</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
-</div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<h3 id="use-case-5-admin-see-all-duties-planned-for-current-and-next-month-in-the-calendar" class="discrete">Use case 5 (Admin): See all duties planned for current and next month in the calendar</h3>
+<h3 id="use-case-3-admin-see-all-duties-planned-for-current-and-next-month-in-the-calendar" class="discrete">Use case 3 (Admin): See all duties planned for current and next month in the calendar</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to see duties planned for the current month.</p>
+<p>Admin requests to see duties planned for this month by entering viewCurrent.</p>
 </li>
 <li>
-<p>PersonnelDatabase shows the calendar of the current month with all the duties.</p>
+<p>Calendar UI shows the current month&#8217;s duties.</p>
 </li>
 <li>
-<p>User requests to see duties planned for the next month.</p>
+<p>Admin requests to see duties planned for the next month by entering viewNext.</p>
 </li>
 <li>
-<p>PersonnelDatabase shows the calendar of the next month with all the duties.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
+<p>Calendar UI shows the next month&#8217;s duties.<br>
+Use case ends.</p>
 </li>
 </ol>
 </div>
@@ -2786,17 +2839,41 @@ Use case ends.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-6-admin-see-duties-assigned-to-specific-user" class="discrete">Use case 6 (Admin): See duties assigned to specific user</h3>
+<h3 id="use-case-4-admin-see-duties-assigned-to-specific-user" class="discrete">Use case 4 (Admin): See duties assigned to specific user</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to see all the duties assigned to a specific user.</p>
+<p>Admin requests to see the duties assigned to a specific person for the next month.</p>
 </li>
 <li>
-<p>PersonnelDatabase shows all the duties assigned to the specific user</p>
+<p>MainWindow UI shows the user the person duties for the nextMonth.<br>
+Use case ends.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-5-admin-schedule-duties" class="discrete">Use case 5 (Admin): Schedule duties</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see duties planned for the current month.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows the calendar of the current month with all the duties.</p>
+</li>
+<li>
+<p>User requests to see duties planned for the next month.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows the calendar of the next month with all the duties.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2828,7 +2905,8 @@ Use case ends.</p>
 <li>
 <p>2b1. PersonnelDatabase shows an error message indicating that the user is not assigned to any duties.</p>
 <div class="paragraph">
-<p>Use case ends.</p>
+<p>Use case ends.
+<strong>Extensions</strong></p>
 </div>
 </li>
 </ul>
@@ -2836,7 +2914,21 @@ Use case ends.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-7-admin-schedule-duties" class="discrete">Use case 7 (Admin): Schedule duties</h3>
+<h3 id="use-case-6-admin-clear-all-the-database-including-duties" class="discrete">Use case 6 (Admin): Clear all the database, including duties</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Admin requests to clear all personnel and duties from database.</p>
+</li>
+<li>
+<p>All data including personnel and upcoming duties is wiped and shown on the MainWindow UI</p>
+</li>
+</ol>
+</div>
+<h3 id="use-case-7-admin-approve-swapping-of-duties" class="discrete">Use case 7 (Admin): Approve swapping of duties</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2844,50 +2936,13 @@ Use case ends.</p>
 <p>1.
 2.
 3.
-4.</p>
-</div>
-<div class="paragraph">
-<p>+
+4.<br>
 Use case ends.</p>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<h3 id="use-case-8-admin-clear-all-the-database-including-duties" class="discrete">Use case 8 (Admin): Clear all the database, including duties</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
-</div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<h3 id="use-case-9-admin-approve-swapping-of-duties" class="discrete">Use case 9 (Admin): Approve swapping of duties</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
-</div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<h3 id="use-case-10-general-user-see-own-duties" class="discrete">Use case 10 (General user): See own duties</h3>
+<h3 id="use-case-8-general-user-see-own-duties" class="discrete">Use case 8 (General user): See own duties</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2934,56 +2989,97 @@ Use case ends.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-11-general-user-block-some-dates-for-duties-next-month" class="discrete">Use case 11 (General user): Block some dates for duties next month</h3>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-9-general-user-block-some-dates-for-duties-next-month" class="discrete">Use case 9 (General user): Block some dates for duties next month</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to block certain dates in the upcoming month of duties.</p>
+</li>
+<li>
+<p>PersonnelDatabase takes in the given dates and shows a success message.</p>
+</li>
+<li>
+<p>User will then not be scheduled for duties in the upcoming month when schedule is run.</p>
 <div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<p>Use case ends.</p>
 </div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<h3 id="use-case-12-general-user-log-into-the-system" class="discrete">Use case 12 (General user): Log into the system</h3>
+<h3 id="use-case-10-general-user-log-into-the-system" class="discrete">Use case 10 (General user): Log into the system</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A general user requests to log in to the system.</p>
+</li>
+<li>
+<p>The general use has not changed their password and so enters their NRIC as the username and password.</p>
+</li>
+<li>
+<p>The user is logged into the database.</p>
+</li>
+</ol>
 </div>
+<h3 id="use-case-11-general-user-exit-the-system" class="discrete">Use case 11 (General user): Exit the system</h3>
 <div class="paragraph">
-<p>+
-Use case ends.</p>
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A user requests to close the system and types exit.</p>
+</li>
+<li>
+<p>The Application closes.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<h3 id="use-case-13-general-user-exit-the-system" class="discrete">Use case 13 (General user): Exit the system</h3>
+<h3 id="use-case-12-general-user-remove-my-own-blocked-dates" class="discrete">Use case 12 (General user): remove my own blocked dates</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the blocked dates in the upcoming month.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows the use the blocked days he had entered previously.</p>
+</li>
+<li>
+<p>User requests to remove the blocked dates in the upcoming month.</p>
+</li>
+<li>
+<p>PersonnelDatabase deletes all blocked dates for the user.</p>
 <div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<p>Use case ends.</p>
 </div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
@@ -3173,5 +3269,39 @@ Expected: Similar to previous.</p>
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="blockdatecommand-tests"><a class="link" href="#blockdatecommand-tests">H.4. BlockDateCommand Tests</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisites: You need to be logged in as a general user before you can block dates. If there are no personnel Database you can add some by loggin in as an Admin first</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case : block 1 5 6
+Expected : The person has succesfully blocked days in the upcoming month and when schedule is run he will not be assigned duties on those days.</p>
+</li>
+<li>
+<p>Test case : block -1
+Expected : CommandException will be thrown to show invalid date. No dates will be blocked.</p>
+</li>
+<li>
+<p>Test case : block 33
+Expected : CommandException will be thrown to show invalid date. No dates will be blocked.</p>
+</li>
+<li>
+<p>Test case : block 6 (Logged in as an Admin)
+Expected : CommandException will be thrown to show invalid authority. No dates will be blocked.</p>
+</li>
+<li>
+<p>Test case : block 6 (Schedule already confirmed)
+Expected : CommandException will be thrown to show confirmed schedule. No dates will be blocked.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:42:46 UTC</div></div></div></body></html>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:51:07 UTC</div></div></div></body></html>

@@ -56,7 +56,8 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed milestones and issue tracker for the project.</p>
+<p>Managed milestones and issue tracker for the project.
+***Ensured that the build passed at certain stages and improved coverage during testing.</p>
 </li>
 </ul>
 </div>
@@ -162,55 +163,42 @@ can be pressed to invoke a described function.</p>
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="view-all-duties-for-current-month-code-viewcurrent-code"><a class="link" href="#view-all-duties-for-current-month-code-viewcurrent-code">View all duties for current month: <code>viewCurrent</code></a></h4>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
-<p>Brings up calendar view, with all duties for the current month.<br>
+<p><strong>Command Format</strong></p>
+</div>
+<div class="paragraph">
+<p>==== View all duties for current month: <code>viewCurrent</code>
+Brings up calendar view, with all duties for the current month.<br>
 Format: <code>viewCurrent</code></p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="view-all-duties-for-next-month-code-viewnext-code"><a class="link" href="#view-all-duties-for-next-month-code-viewnext-code">View all duties for next month: <code>viewNext</code></a></h4>
 <div class="paragraph">
-<p>Brings up calendar view, with all duties for the next month.<br>
+<p>==== View all duties for next month: <code>viewNext</code>
+Brings up calendar view, with all duties for the next month.<br>
 Format: <code>viewNext</code></p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="block-dates-code-block-code-br"><a class="link" href="#block-dates-code-block-code-br">Block dates : <code>block</code><br></a></h4>
 <div class="paragraph">
-<p>The user can block dates and set which dates they are unavailable to duties for the upcoming month. A user can block up to 15 days.<br>
+<p>==== Block dates : <code>block</code><br>
+The user can block dates and set which dates they are unavailable to duties for the upcoming month. A user can block up to 15 days.<br>
 Format: <code>block DATE DATE DATE &#8230;&#8203;</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
+</div>
+</div>
 <div class="paragraph">
 <p>The date entered must be a valid number for the upcoming month. For example if the next month is February, block 30 is an invalid input.</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="exampleblock">
+<div class="content">
+
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
+</div>
 <div class="paragraph">
 <p>This command can only be entered if next month&#8217;s duty schedule has not been confirmed yet.
 If it has been confirmed please request a swap on the day you wish to duties.</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
 <p>If the user has successfully blocked dates they will not be scheduled for duties on the blocked days in the upcoming month.<br></p>
 </div>
@@ -224,9 +212,9 @@ If it has been confirmed please request a swap on the day you wish to duties.</p
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>==== View blocked dates : <code>viewblock</code><br></p>
 </div>
-<div class="sect3">
-<h4 id="view-blocked-dates-code-viewblock-code-br"><a class="link" href="#view-blocked-dates-code-viewblock-code-br">View blocked dates : <code>viewblock</code><br></a></h4>
 <div class="paragraph">
 <p>The user can view the dates they have blocked for the upcoming month.<br>
 The blocked dates for the upcoming month will then be printed out for the user to see.<br></p>
@@ -234,35 +222,25 @@ The blocked dates for the upcoming month will then be printed out for the user t
 <div class="paragraph">
 <p>Format: <code>viewblock</code></p>
 </div>
+<div class="paragraph">
+<p>==== Remove blocked dates : <code>removeblock</code><br></p>
 </div>
-<div class="sect3">
-<h4 id="remove-blocked-dates-code-removeblock-code-br"><a class="link" href="#remove-blocked-dates-code-removeblock-code-br">Remove blocked dates : <code>removeblock</code><br></a></h4>
 <div class="paragraph">
 <p>The user can remove the dates they have blocked for the upcoming month. This will remove all blocked days from the upcoming month.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>removeblock</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
+</div>
+</div>
 <div class="paragraph">
 <p>A specific date cannot be removed from the list of blocked dates. If a user wishes to remove only a certain day he can removeblock and run the block command again.</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>== Contributions to the Developer Guide</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -273,10 +251,23 @@ The blocked dates for the upcoming month will then be printed out for the user t
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="block-dates-feature"><a class="link" href="#block-dates-feature">Block Dates Feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+</div>
+<div class="title">Figure 1. Component interactions for <code>delete 1</code> command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 2. Structure of the Model Component</div>
+</div>
+<div class="paragraph">
+<p>The sections below give more details of each component.
+=== Block Dates Feature
+==== Current Implementation</p>
+</div>
 <div class="paragraph">
 <p>The block dates feature is facilitated by PersonnelDatabase and was implemented for general users as they cannot be expected to do duties any time during the upcoming month.
 They may have certain dates that are busy or do not wish to do duties and as such they can block the dates in the PersonnelDatabase.</p>
@@ -346,7 +337,202 @@ MAX_BLOCKS_NUMBER in BlockDateCommand</p>
 The BlockDateCommand then passes the Integer List to the model where it is stored in a Hashmap in DutyMonth.
 DutyMonth has a Hashmap&lt;Person, List&lt;Integer&gt;&gt; blockedDays object to allow it to store the blockedDays of every person for the upcoming month.</p>
 </div>
+<div class="paragraph">
+<p>Step 6 :<br>
+The algorithm for scheduling was then modified to prevent the user from not doing duties on their blockedDays. This was done with the assistance of the HashMap.
+During scheduling when a person is assigned to a day the model checks the list of blocked dates. If the person has a blocked day on the assigned duty, they are assigned a new one.
+Someone else will then replace them in the previously assigned duty.
+A more detailed explanation of the scheduling algorithm is in <a href="#Duty Settings">[Duty Settings]</a>.</p>
+</div>
+<div class="paragraph">
+<p>==== Design Considerations:
+* Alternative 1 (current implementation): BlockDateCommand takes in a few dates they are then stored in the personnel database as a Hashmap.
+<strong> Pros :
+</strong>* Easy to implement as a new Command. Parsers have already been set up in address book and adding a new command is relatively easy to implement.
+<strong>*The command storing the Integer List in the PersonnelDatabase in a HashMap is also convenient for the other commands such as <code>viewblock</code> and `removeblock.
+</strong>*The Hashmap allows easy referencing for these commands. The Hashmap also allows for easier scheduling when the scheduler is run.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cons :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The BlockDateCommand would directly modify the HashMap in the PersonnelDatabase and this would go against the n-tier architecture of the PersonnelDatabase Program. This would break the abstraction principle.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Implemented Fix for Cons :
+</strong>* To combat the above issue, Model was given methods to add the blockedDates into the Personnel Database rather than the command itself.
+This allows the logic to pass the dates to the model which would then integrate it into the Personnel Database.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2 (current implementation): BlockDateCommand takes in a few dates they are then stored as a new Class called BlockedDates</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement as a new Command. Parsers have already been set up in address book and adding a new command is relatively easy to implement.</p>
+</li>
+<li>
+<p>Would be clear what the BlockedDate Class does and also if other forms of dates such as AppointmentDates have to be added in later this would help with integrating them.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The implementation of a BlockedDate Class would complicated the process of integrating into the schedule much harder.
+Implementing the BlockedDate into the algorithm would be a lot harder and would take more time and effort</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Use case 3 (Admin): See all duties planned for current and next month in the calendar</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Admin requests to see duties planned for this month by entering viewCurrent.</p>
+</li>
+<li>
+<p>Calendar UI shows the current month&#8217;s duties.</p>
+</li>
+<li>
+<p>Admin requests to see duties planned for the next month by entering viewNext.</p>
+</li>
+<li>
+<p>Calendar UI shows the next month&#8217;s duties.<br>
+Use case ends.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-4-admin-see-duties-assigned-to-specific-user" class="discrete">Use case 4 (Admin): See duties assigned to specific user</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Admin requests to see the duties assigned to a specific person for the next month.</p>
+</li>
+<li>
+<p>MainWindow UI shows the user the person duties for the nextMonth.<br>
+Use case ends.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="paragraph">
+<p>=== Use case 11 (General user): Block some dates for duties next month</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to block certain dates in the upcoming month of duties.</p>
+</li>
+<li>
+<p>PersonnelDatabase takes in the given dates and shows a success message.</p>
+</li>
+<li>
+<p>User will then not be scheduled for duties in the upcoming month when schedule is run.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<h3 id="use-case-14-general-user-remove-my-own-blocked-dates" class="discrete">Use case 14 (General user): remove my own blocked dates</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the blocked dates in the upcoming month.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows the use the blocked days he had entered previously.</p>
+</li>
+<li>
+<p>User requests to remove the blocked dates in the upcoming month.</p>
+</li>
+<li>
+<p>PersonnelDatabase deletes all blocked dates for the user.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>=== BlockDateCommand Tests</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisites: You need to be logged in as a general user before you can block dates. If there are no personnel Database you can add some by loggin in as an Admin first</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case : block 1 5 6
+Expected : The person has succesfully blocked days in the upcoming month and when schedule is run he will not be assigned duties on those days.</p>
+</li>
+<li>
+<p>Test case : block -1
+Expected : CommandException will be thrown to show invalid date. No dates will be blocked.</p>
+</li>
+<li>
+<p>Test case : block 33
+Expected : CommandException will be thrown to show invalid date. No dates will be blocked.</p>
+</li>
+<li>
+<p>Test case : block 6 (Logged in as an Admin)
+Expected : CommandException will be thrown to show invalid authority. No dates will be blocked.</p>
+</li>
+<li>
+<p>Test case : block 6 (Schedule already confirmed)
+Expected : CommandException will be thrown to show confirmed schedule. No dates will be blocked.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:42:46 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:51:07 UTC</div></div></div></body></html>
