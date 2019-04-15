@@ -408,59 +408,9 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 <div class="paragraph">
-<p>The diagram above shows the high-level structure of the duty components.</p>
+<p>The diagram above shows the high-level structure of the duty components.
+==== Duty Month</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="duty-calendar"><a class="link" href="#duty-calendar">Duty Calendar</a></h4>
-<div class="paragraph">
-<p><code>DutyCalendar</code> is an attribute of <code>PersonalDatabase</code>. It comprises of three <code>DutyMonth</code> objects&#8201;&#8212;&#8201;namely <code>currentMonth</code>, <code>nextMonth</code> and <code>dummyNextMonth</code> and a <code>DutyStorage</code> object&#8201;&#8212;&#8201;<code>dutyStorage</code>.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>currentMonth</code> represents the current month.</p>
-</li>
-<li>
-<p><code>nextMonth</code> represents the upcoming month.</p>
-</li>
-<li>
-<p><code>dummyNextMonth</code> is a dummy <code>DutyMonth</code> object that mirrors the contents of <code>nextMonth</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is instantiated each time <code>schedule</code> command is called. The scheduling alogorithm is invoked to produce a viable duty schedule in <code>dummyNextMonth</code>.</p>
-</li>
-<li>
-<p>When <code>confirm</code> command is called, <code>nextMonth</code> will point to the <code>dummyNextMonth</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>dutyStorage</code> stores the accumulated duty points and duty records of each person.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><code>DutyCalendar</code> implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>DutyCalendar#rollover()</code>&#8201;&#8212;&#8201;replaces <code>currentMonth</code> with <code>nextMonth</code> and a new <code>nextMonth</code> object will be instantiated. <code>rollover()</code> will be called automatically when the application begins and the <code>currentMonth</code> object no longer correspond to the actual current month in real time.</p>
-</li>
-<li>
-<p><code>DutyCalendar#scheduleDutyForNextMonth()</code>&#8201;&#8212;&#8201;instantiates <code>dummyNextMonth</code> and runs the scheduling algorithm on it.</p>
-</li>
-<li>
-<p><code>DutyCalendar#confirm()</code>&#8201;&#8212;&#8201;confirms the latest duty schedule by allowing <code>nextMonth</code> to point to the current instantiation of <code>dummyNextMonth</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="duty-month"><a class="link" href="#duty-month">Duty Month</a></h4>
 <div class="paragraph">
 <p><code>DutyMonth</code> class represents all duty-related information for a particular month. It contains the following key information:</p>
 </div>
@@ -716,4 +666,4 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 <div class="sectionbody">
 <hr>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:26:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:42:46 UTC</div></div></div></body></html>
