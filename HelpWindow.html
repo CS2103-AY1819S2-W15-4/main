@@ -412,7 +412,14 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">4.2.11. Exit : <code>exit</code></a></h4>
+<h4 id="log-out-code-logout-code-code-coming-in-v2-0-code"><a class="link" href="#log-out-code-logout-code-code-coming-in-v2-0-code">4.2.11. Log Out: <code>logout</code> <code>coming in v2.0</code></a></h4>
+<div class="paragraph">
+<p>Logs the user out of the program without exiting.<br>
+Format: <code>logout</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">4.2.12. Exit : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program. User will be logged out automatically.<br>
 Format: <code>exit</code></p>
@@ -1018,7 +1025,31 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-swaps-command-code-viewswaps-code"><a class="link" href="#view-swaps-command-code-viewswaps-code">4.4.11. View Swaps Command : <code>viewSwaps</code></a></h4>
+<h4 id="manually-replace-a-person-in-the-duty-code-replace-code-code-coming-in-v2-0-code"><a class="link" href="#manually-replace-a-person-in-the-duty-code-replace-code-code-coming-in-v2-0-code">4.4.11. Manually replace a person in the duty : <code>replace</code> <code>coming in v2.0</code></a></h4>
+<div class="paragraph">
+<p>Replaces the particular person assigned to the duty with the given person.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>replace d/DUTYDATE(DDMMYY) o/NRIC n/NRIC</code></p>
+</div>
+<div class="paragraph">
+<p>If the person the user is trying to replace with is already assigned to that particular duty, the system will throw an exception.
+Both the person getting replaced and the person replacing have to be present in the database.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>replace d/140219 o/S9012345L n/G9043214N</code><br>
+Replaces the person with NRIC S9012345L in duty on 14th Feb 2019 with the person with NRIC G9043214N.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-swaps-command-code-viewswaps-code"><a class="link" href="#view-swaps-command-code-viewswaps-code">4.4.12. View Swaps Command : <code>viewSwaps</code></a></h4>
 <div class="paragraph">
 <p>Used to view all the swap requests that have a requester-accepter pair. The list will be shown in the results display. The Admin User can then accept or reject the swap using the AcceptSwap or RejectSwap command.</p>
 </div>
@@ -1027,7 +1058,7 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 <div class="sect3">
-<h4 id="approve-swap-command-code-approveswap-code"><a class="link" href="#approve-swap-command-code-approveswap-code">4.4.12. Approve Swap Command : <code>approveSwap</code></a></h4>
+<h4 id="approve-swap-command-code-approveswap-code"><a class="link" href="#approve-swap-command-code-approveswap-code">4.4.13. Approve Swap Command : <code>approveSwap</code></a></h4>
 <div class="paragraph">
 <p>The Admin User can use this command to approve a certain swap at the given index in the list of paired swap requests in the results display after a viewSwaps command. This will edit the duties in the schedule as well as the points for each user. Thereafter, the request will be deleted.</p>
 </div>
@@ -1059,7 +1090,7 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 <div class="sect3">
-<h4 id="reject-swap-command-code-rejectswap-code"><a class="link" href="#reject-swap-command-code-rejectswap-code">4.4.13. Reject Swap Command : <code>rejectSwap</code></a></h4>
+<h4 id="reject-swap-command-code-rejectswap-code"><a class="link" href="#reject-swap-command-code-rejectswap-code">4.4.14. Reject Swap Command : <code>rejectSwap</code></a></h4>
 <div class="paragraph">
 <p>The Admin User can use this command to reject a certain swap at the given index in the list of paired swap requests in the results display after a viewSwaps command. Thereafter, the request will be deleted.</p>
 </div>
@@ -1225,4 +1256,4 @@ Your password is also your NRIC by default, unless you or your administrator cha
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:14:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:20:58 UTC</div></div></div></body></html>
