@@ -82,7 +82,12 @@
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
 <li><a href="#saving-data">H.3. Saving data</a></li>
-<li><a href="#blockdatecommand-tests">H.4. BlockDateCommand Tests</a></li>
+<li><a href="#schedule-duties-for-next-month">H.4. Schedule duties for next month</a></li>
+<li><a href="#confirm-schedule-for-next-month">H.5. Confirm schedule for next month</a></li>
+<li><a href="#reward-points-to-persons">H.6. Reward points to persons</a></li>
+<li><a href="#penalize-points-to-persons">H.7. Penalize points to persons</a></li>
+<li><a href="#change-duty-settings">H.8. Change duty settings</a></li>
+<li><a href="#blockdatecommand-tests">H.9. BlockDateCommand Tests</a></li>
 </ul>
 </li>
 </ul>
@@ -1237,7 +1242,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.9. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-storage-of-duty-issues"><a class="link" href="#aspect-storage-of-duty-issues">Aspect: storage of Duty issues</a></h5>
+<h5 id="aspect-storage-of-duty-issues"><a class="link" href="#aspect-storage-of-duty-issues">Aspect: Storage of Duty issues</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -3356,16 +3361,136 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="blockdatecommand-tests"><a class="link" href="#blockdatecommand-tests">H.4. BlockDateCommand Tests</a></h3>
+<h3 id="schedule-duties-for-next-month"><a class="link" href="#schedule-duties-for-next-month">H.4. Schedule duties for next month</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Prerequisites: You need to be logged in as a general user before you can block dates. If there are no personnel Database you can add some by loggin in as an Admin first</p>
+<p>Schedule duties for the next month.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list.</p>
+</li>
+<li>
+<p>Test case: <code>schedule</code><br>
+Expected: The schedule for the next month should be generated.<br>
+Scroll down to see the duty roster and points to be awarded to the persons.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="confirm-schedule-for-next-month"><a class="link" href="#confirm-schedule-for-next-month">H.5. Confirm schedule for next month</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Confirm a schedule for next month.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: <code>schedule</code> has just been called.</p>
+</li>
+<li>
+<p>Test case: <code>confirm</code><br>
+Expected: Schedule has been successfully confirmed.<br>
+Scroll down to see the duty roster and total points accumulated for the persons.<br>
+Call <code>viewNext</code> to see the confirmed schedule on the calendar.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reward-points-to-persons"><a class="link" href="#reward-points-to-persons">H.6. Reward points to persons</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rewards points to a person or a list of persons</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list. Call <code>points</code> to view current duty points of the persons.</p>
+</li>
+<li>
+<p>Test case: <code>reward i/1 p/10</code><br>
+Expected: 1st person on the contact list has his duty points increase by 10. Call <code>points</code> again to verify.<br></p>
+</li>
+<li>
+<p>Test case: <code>reward i/1 2 4 p/30</code><br>
+Expected: 1st, 3nd and 4th persons on the contact list have their duty points increase by 30 each. Call <code>points</code> again to verify.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="penalize-points-to-persons"><a class="link" href="#penalize-points-to-persons">H.7. Penalize points to persons</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Penalize points to a person or a list of persons</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list. Call <code>points</code> to view current duty points of the persons.</p>
+</li>
+<li>
+<p>Test case: <code>penalize i/1 p/15</code><br>
+Expected: 1st person on the contact list has his duty points decrease by 15. Call <code>points</code> again to verify.<br></p>
+</li>
+<li>
+<p>Test case: <code>penalize i/2 3 p/5</code><br>
+Expected: 2nd and 3rd persons on the contact list have their duty points decrease by 5 each. Call <code>points</code> again to verify.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="change-duty-settings"><a class="link" href="#change-duty-settings">H.8. Change duty settings</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change duty settings</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list. Duty schedule for next month not confirmed. Call <code>schedule</code> to get a duty allocation. When viewing the duty roster result from the scheduling, take note of the points awarded by each duty and the number of persons allocated to each duty based on which day of the week it is.</p>
+</li>
+<li>
+<p>Test case: <code>settings</code><br>
+Expected: Duty settings get displayed, indicating the manpower needed and points rewarded for duties based on which day of the week the duty falls on. These numbers should tally with the observations from calling <code>schedule</code> previously.<br></p>
+</li>
+<li>
+<p>Test case: <code>settings d/sun p/10 m/5</code><br>
+Expected: Sunday duties now require 5 persons and worth 10 points each. Call <code>schedule</code> again and observe the duty roster result. The new duty roster should provide information that tallies with the changed duty settings<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="blockdatecommand-tests"><a class="link" href="#blockdatecommand-tests">H.9. BlockDateCommand Tests</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisites: You need to be logged in as a general user before you can block dates. If there are no personnel Database you can add some by login in as an Admin first</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Test case : block 1 5 6
-Expected : The person has succesfully blocked days in the upcoming month and when schedule is run he will not be assigned duties on those days.</p>
+Expected : The person has successfully blocked days in the upcoming month and when schedule is run he will not be assigned duties on those days.</p>
 </li>
 <li>
 <p>Test case : block -1
@@ -3390,4 +3515,4 @@ Expected : CommandException will be thrown to show confirmed schedule. No dates 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:20:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:36:43 UTC</div></div></div></body></html>

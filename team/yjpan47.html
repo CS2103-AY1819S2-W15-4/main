@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Pan Yongjing - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Duty Planner</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S2-W15-4/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Pan Yongjing - Project Portfolio</h1></div><div id="content"><div class="sect1">
-<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">PROJECT: AddressBook - Level 4</a></h2>
+<h2 id="project-duty-planner"><a class="link" href="#project-duty-planner">PROJECT: Duty Planner</a></h2>
 <div class="sectionbody">
 <hr>
 </div>
@@ -49,101 +49,103 @@
 <p>Justification: The duty package provides the backend support for all duty-related features and commands.</p>
 </li>
 <li>
-<p>Highlights: The package contain functions assessed by many commands (i.e. BlockDateCommmand, ViewCommand, ScheduleCommand, DutySettingCommand).</p>
+<p>Highlights: The package contain functions assessed by many commands (i.e. BlockDateCommmand, ScheduleCommand, DutySettingsCommand, ViewCommand, PointsCommand, RewardCommand, PenalizeCommand).</p>
 </li>
 <li>
-<p>Credits: {Fellow teammate Yoon Ki Hyun for working together on the DutyMonth and Duty}</p>
+<p>Credits: {Teammate Yoon Ki Hyun for working together on the DutyMonth and Duty}</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Major enhancement</strong>: Schedule and confirm command</p>
+<p><strong>Major enhancement</strong>: <code>ScheduleCommand</code> and <code>ConfirmScheduleCommand</code></p>
 <div class="ulist">
 <ul>
 <li>
 <p>What it does: The schedule command that invokes the schedule algorithm to generate a viable duty allocation for the upcoming month. The confirm command finalizes the schedule and updates the existing duty points of each person.</p>
 </li>
 <li>
-<p>Justification: Enable duties to be scheduled to persons.</p>
+<p>Justification: Enable duties to be created and scheduled.</p>
 </li>
 <li>
-<p>Highlight: Need to ensure that the command references the correct dutyMonth and duty points of each person do not get updated until confirm command is called.</p>
+<p>Highlights: The main feature of the application.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Major enhancement</strong>: Settings command</p>
+<p><strong>Major enhancement</strong>: <code>SettingsCommand</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Enable the administrator to adjust the desired manpower for duties based on the day of the week. Eanble the administrator to adjust the points to be awarded for doing duties based on the daty of the week.</p>
+<p>What it does: Enable the administrator to adjust the desired manpower for duties based on the day of the week. Enable the administrator to adjust the points to be awarded for doing duties based on the duty of the week.</p>
 </li>
 <li>
-<p>Justification: Allows the user to have flexibility to change the duty allocation system.</p>
+<p>Justification: Allows the administrator to have flexibility to change the duty allocation system.</p>
 </li>
 <li>
-<p>Highlight: Need to ensure that the scheduling algorithm is compatible with adjustable duty points and duty capacities.</p>
+<p>Highlights: Need to ensure that the scheduling algorithm is compatible with adjustable duty points and duty capacities.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: DateUtil common</p>
+<p><strong>Major enhancement</strong>: <code>PointsCommand</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Enable the administrator to view duty points and duty records of all persons.</p>
+</li>
+<li>
+<p>Justification: Allows more duty-related information to be viewed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: <code>RewardCommand</code> and <code>PenalizeCommand</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Enable the administrator to reward and penalize points from a person or a list of persons.</p>
+</li>
+<li>
+<p>Justification: Allows the administrator the autonomy to manually update duty points.</p>
+</li>
+<li>
+<p>Highlight: Enabled us to better test the effectiveness of the scheduling algorithm in obscure situations (i.e. one person having points significantly higher or lower points than the rest).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Storage for <code>DutyStorage</code>&#8201;&#8212;&#8201;<code>JsonAdaptedDutyStorage</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Ensures that duty points and duty records are saved in the system when the application closes.</p>
+</li>
+<li>
+<p>Justification: This allows users to open the application with previously saved duty information instead of resetting each time the application reopens.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: <code>DateUtil</code> Common</p>
 <div class="ulist">
 <ul>
 <li>
 <p>What it does: A class that contains static methods to assist in validation of date parameters and other date related functions.</p>
 </li>
 <li>
-<p>Justification: Contains commonly used functionalities that aids the developers and prevent duplicate code.</p>
+<p>Justification: Contains commonly used functions that aids the developers and prevent duplicate codes.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Code contributed</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/Duty.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/Duty.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyMonth.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyMonth.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutySettings.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutySettings.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyStorage.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/duty/DutyStorage.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/DutyCalendar.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/DutyCalendar.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/commons/util/DateUtil.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/commons/util/DateUtil.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ScheduleCommand.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ScheduleCommand.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ConfirmScheduleCommand.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/ConfirmScheduleCommand.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/DutySettingsCommand.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/commands/DutySettingsCommand.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/parser/DutySettingsCommandParser.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/logic/parser/DutySettingsCommandParser.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/UserPrefs.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/UserPrefs.java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/PersonnelDatabase.java" class="bare">https://github.com/yjpan47/main/blob/master/src/main/java/seedu/address/model/PersonnelDatabase.java</a></p>
-</li>
-</ul>
-</div>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=yjpan47&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-04-03&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Code</a>]</p>
 </li>
 <li>
 <p>Project management:</p>
@@ -164,7 +166,7 @@
 <a href="https://github.com/yjpan47/main/blob/master/docs/UserGuide.adoc" class="bare">https://github.com/yjpan47/main/blob/master/docs/UserGuide.adoc</a></p>
 </li>
 <li>
-<p>Updated developer guide to include explanation of the schedule algorithm:<br>
+<p>Updated Developer Guide to include Duty Package:<br>
 <a href="https://github.com/yjpan47/main/blob/master/docs/DeveloperGuide.adoc" class="bare">https://github.com/yjpan47/main/blob/master/docs/DeveloperGuide.adoc</a></p>
 </li>
 </ul>
@@ -408,9 +410,11 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 <div class="paragraph">
-<p>The diagram above shows the high-level structure of the duty components.
-==== Duty Month</p>
+<p>The diagram above shows the high-level structure of the duty components.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="duty-month"><a class="link" href="#duty-month">Duty Month</a></h4>
 <div class="paragraph">
 <p><code>DutyMonth</code> class represents all duty-related information for a particular month. It contains the following key information:</p>
 </div>
@@ -592,7 +596,7 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-storage-of-duty-issues"><a class="link" href="#aspect-storage-of-duty-issues">Aspect: storage of Duty issues</a></h5>
+<h5 id="aspect-storage-of-duty-issues"><a class="link" href="#aspect-storage-of-duty-issues">Aspect: Storage of Duty issues</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -659,6 +663,126 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="schedule-duties-for-next-month"><a class="link" href="#schedule-duties-for-next-month">Schedule duties for next month</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Schedule duties for the next month.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list.</p>
+</li>
+<li>
+<p>Test case: <code>schedule</code><br>
+Expected: The schedule for the next month should be generated.<br>
+Scroll down to see the duty roster and points to be awarded to the persons.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="confirm-schedule-for-next-month"><a class="link" href="#confirm-schedule-for-next-month">Confirm schedule for next month</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Confirm a schedule for next month.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: <code>schedule</code> has just been called.</p>
+</li>
+<li>
+<p>Test case: <code>confirm</code><br>
+Expected: Schedule has been successfully confirmed.<br>
+Scroll down to see the duty roster and total points accumulated for the persons.<br>
+Call <code>viewNext</code> to see the confirmed schedule on the calendar.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reward-points-to-persons"><a class="link" href="#reward-points-to-persons">Reward points to persons</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rewards points to a person or a list of persons</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list. Call <code>points</code> to view current duty points of the persons.</p>
+</li>
+<li>
+<p>Test case: <code>reward i/1 p/10</code><br>
+Expected: 1st person on the contact list has his duty points increase by 10. Call <code>points</code> again to verify.<br></p>
+</li>
+<li>
+<p>Test case: <code>reward i/1 2 4 p/30</code><br>
+Expected: 1st, 3nd and 4th persons on the contact list have their duty points increase by 30 each. Call <code>points</code> again to verify.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="penalize-points-to-persons"><a class="link" href="#penalize-points-to-persons">Penalize points to persons</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Penalize points to a person or a list of persons</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list. Call <code>points</code> to view current duty points of the persons.</p>
+</li>
+<li>
+<p>Test case: <code>penalize i/1 p/15</code><br>
+Expected: 1st person on the contact list has his duty points decrease by 15. Call <code>points</code> again to verify.<br></p>
+</li>
+<li>
+<p>Test case: <code>penalize i/2 3 p/5</code><br>
+Expected: 2nd and 3rd persons on the contact list have their duty points decrease by 5 each. Call <code>points</code> again to verify.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="change-duty-settings"><a class="link" href="#change-duty-settings">Change duty settings</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change duty settings</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Multiple persons in the list. Duty schedule for next month not confirmed. Call <code>schedule</code> to get a duty allocation. When viewing the duty roster result from the scheduling, take note of the points awarded by each duty and the number of persons allocated to each duty based on which day of the week it is.</p>
+</li>
+<li>
+<p>Test case: <code>settings</code><br>
+Expected: Duty settings get displayed, indicating the manpower needed and points rewarded for duties based on which day of the week the duty falls on. These numbers should tally with the observations from calling <code>schedule</code> previously.<br></p>
+</li>
+<li>
+<p>Test case: <code>settings d/sun p/10 m/5</code><br>
+Expected: Sunday duties now require 5 persons and worth 10 points each. Call <code>schedule</code> again and observe the duty roster result. The new duty roster should provide information that tallies with the changed duty settings<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -666,4 +790,4 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 <div class="sectionbody">
 <hr>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:20:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:36:43 UTC</div></div></div></body></html>
