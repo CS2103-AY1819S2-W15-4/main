@@ -29,11 +29,12 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.3. Configuration</a></li>
-<li><a href="#duty-package">3.4. Duty Package</a></li>
-<li><a href="#logging-in-and-account-authority-feature">3.5. Logging in and account authority feature</a></li>
+<li><a href="#block-dates-feature">3.1. Block Dates Feature</a></li>
+<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#duty-package">3.5. Duty Package</a></li>
+<li><a href="#logging-in-and-account-authority-feature">3.6. Logging in and account authority feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -574,9 +575,84 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="block-dates-feature"><a class="link" href="#block-dates-feature">3.1. Block Dates Feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The block dates feature is facilitated by PersonnelDatabase and was implemented for general users as they cannot be expected to do duties any time during the upcoming month.
+They may have certain dates that are busy or do not wish to do duties and as such they can block the dates in the PersonnelDatabase.</p>
+</div>
+<div class="paragraph">
+<p>Block Dates was done by adding 3 new commands to the <code>Logic</code> which are <code>BlockDateCommand</code>, <code>ViewBlockCommand</code>, <code>RemoveBlockCommand</code>.
+Modifications and methods were also added in <code>Model</code> and <code>Storage</code> to implement the blocking of dates in Duty planning and storage.</p>
+</div>
+<div class="paragraph">
+<p><code>BlockDateCommand</code> works like other commands in the Duty Planner. The command is read a text string from the MainWindow in UI.
+The sequence diagram for the interaction is below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BlockDateStateDiagram.png" alt="BlockDateStateDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 1 :<br>
+As seen in the diagram above. The MainWindow calls the execute Command in Logic and passes in the command text, userName and userType of the logged in user.</p>
+</div>
+<div class="paragraph">
+<p>Step 2 :<br>
+The LogicManager then passes the command text, userName and userType to PersonnelDatabaseParser and it determines the type of command by parsing the String input.
+Using certain command words, the PersonnelDatabase Parser determines what the command is and then passes the parsed commandText, userName and userType to the BlockDateCommandParser.</p>
+</div>
+<div class="paragraph">
+<p>Step 3 :<br>
+The BlockDateCommandParser
+The BlockDateCommandParser takes in the dates list as a String and parses it into a Integer List which is used in the model.
+The BlockDateCommandParser then passes in the Integer List, userType and userName to BlockDateCommand.
+It checks for valid Integer inputs for days in the next month and will throw an exception if the dates entered are not valid</p>
+</div>
+<div class="paragraph">
+<p>Step 4 :<br>
+The logic for BlockDateCommand follows the activity diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BlockDateActivityDiagram.png" alt="BlockDateActivityDiagram" width="800">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The first check is the userType, if you are an Admin you will not be able to access this command</p>
+</li>
+<li>
+<p>The second check is to see the schedule has already been confirmed for nex month. If so the user cannot block any dates for the upcoming month</p>
+</li>
+<li>
+<p>The third check is to see the number of dates blocked and if they are more than 15, an exception will be thrown.
+This is to ensure that commander have enough people to schedule duties. You can change this number if you wish to do so by updating the
+MAX_BLOCKS_NUMBER in BlockDateCommand</p>
+</li>
+<li>
+<p>If the user passes all check the Command will enter Step 5</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Step 5 :<br>
+The BlockDateCommand then passes the Integer List to the model where it is stored in a Hashmap in DutyMonth.
+DutyMonth has a Hashmap&lt;Person, List&lt;Integer&gt;&gt; blockedDays object to allow it to store the blockedDays of every person for the upcoming month.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -706,7 +782,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -776,14 +852,14 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.3, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -814,15 +890,15 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.3. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="duty-package"><a class="link" href="#duty-package">3.4. Duty Package</a></h3>
+<h3 id="duty-package"><a class="link" href="#duty-package">3.5. Duty Package</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p><strong>DutyCalendar and other relevant classes</strong></p>
 </div>
@@ -917,7 +993,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-need-for-dutydate-classes"><a class="link" href="#aspect-need-for-dutydate-classes">Aspect: need for DutyDate classes</a></h5>
 <div class="ulist">
@@ -954,9 +1030,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-and-account-authority-feature"><a class="link" href="#logging-in-and-account-authority-feature">3.5. Logging in and account authority feature</a></h3>
+<h3 id="logging-in-and-account-authority-feature"><a class="link" href="#logging-in-and-account-authority-feature">3.6. Logging in and account authority feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.6.1. Current Implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -979,7 +1055,7 @@ to ensure the user does not have access to the wrong authority level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-handling-logging-in-and-usertype"><a class="link" href="#aspect-handling-logging-in-and-usertype">Aspect: handling logging in and UserType</a></h5>
 <div class="ulist">
@@ -2745,4 +2821,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 09:38:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 09:43:25 UTC</div></div></div></body></html>
