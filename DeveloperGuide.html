@@ -34,7 +34,8 @@
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
 <li><a href="#duty-package">3.5. Duty Package</a></li>
-<li><a href="#logging-in-and-account-authority-feature">3.6. Logging in and account authority feature</a></li>
+<li><a href="#request-for-swapping-of-duties">3.6. Request for swapping of duties</a></li>
+<li><a href="#logging-in-and-account-authority-feature">3.7. Logging in and account authority feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1207,9 +1208,57 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-and-account-authority-feature"><a class="link" href="#logging-in-and-account-authority-feature">3.6. Logging in and account authority feature</a></h3>
+<h3 id="request-for-swapping-of-duties"><a class="link" href="#request-for-swapping-of-duties">3.6. Request for swapping of duties</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p><strong>Swap Request Creation</strong></p>
+</div>
+<div class="paragraph">
+<p>There is currently a Java class called Request in the request folder in the model package. This request represents a swap request that a duty personnel submits using the 'swap' command. It has 4 fields, the requester Person object, the allocated date (out of which the requester wants to swap) as a java.time.LocalDate object, the requested date (into which the requester wants to swap) also as a LocalDate object, and the accepter Person object, which could be null.</p>
+</div>
+<div class="paragraph">
+<p>A Request object is created when the 'swap' command is entered by a non-master-admin user. Since he is an actual human user with an associated Person object and NRIC, he is able to request a swap if he is unwilling or unable to do his current allocated duty. This must happen after the duties are scheduled. Otherwise, the list of duties associated with the user is empty and a swap request cannot be made.</p>
+</div>
+<div class="paragraph">
+<p>The swap command is wrapped in a SwapCommand object that extends the abstract class Command, just like any other command. The user inputs 2 dates, his allocated and requested date, and the 2 dates are parsed as LocalDate objects, from which the Request object is made.</p>
+</div>
+<div class="paragraph">
+<p>Thereafter, the Request object is added to the personnel database through the model so the personnel database now contains the request in a list.</p>
+</div>
+<div class="paragraph">
+<p>After this, the new personnel database is committed (making it undoable) and the listener in LogicManager is informed. As a result, the new personnel database is saved into the JSON file. Finally, the browser panel is refreshed to reflect the newest request list.</p>
+</div>
+<div class="paragraph">
+<p>The browser panel was transformed from implementing FXML WebView to FXML TextArea. After the request list is updated, a new string is passed to the TextArea field for it to display in the browser panel.</p>
+</div>
+<div class="paragraph">
+<p><strong>Accept Swap Command</strong></p>
+</div>
+<div class="paragraph">
+<p>Next, there is a command 'acceptSwap' that allows a non-master-admin user to accept a swap that another user has requested (we call this an open swap.) The list of open swaps would be on the list in the browser panel and the 'acceptSwap' command takes in a positive integer as argument and this integer refers to the index number of the request in the request list.</p>
+</div>
+<div class="paragraph">
+<p>Again, this is encapsulated in an AcceptSwapCommand object, which extends the abstract Command class. An AcceptSwapCommand constructor takes in the index mentioned above and the username (i.e NRIC) of the current user. It sets the accepter Person in the relevant Request object to be the current user.</p>
+</div>
+<div class="paragraph">
+<p><strong>View Swaps Command</strong></p>
+</div>
+<div class="paragraph">
+<p>The 'viewSwaps' command is only for admin users. It takes in no arguments and it is for admin users to view all the swap requests which have found an accepter (From now on we call these paired requests.) This command is encapsulated in the ViewSwapsCommand object. When this ViewSwapsCommand object is executed by the LogicManager, a string showing all the paired requests pending approval is generated and passed into the TextArea of the ResultDisplay. This allows the admin user to view the requests and then proceed to approve or reject them.</p>
+</div>
+<div class="paragraph">
+<p><strong>Approve / Reject Swap Command</strong></p>
+</div>
+<div class="paragraph">
+<p>The admin user can then use 'approveSwap' or 'rejectSwap' to approve or reject a paired swap in the list displayed in the ResultDisplay after executing the viewSwaps command. These are encapsulated in the ApproveSwapCommand and RejectSwapCommand classes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-in-and-account-authority-feature"><a class="link" href="#logging-in-and-account-authority-feature">3.7. Logging in and account authority feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.7.1. Current Implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1232,7 +1281,7 @@ to ensure the user does not have access to the wrong authority level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-handling-logging-in-and-usertype"><a class="link" href="#aspect-handling-logging-in-and-usertype">Aspect: handling logging in and UserType</a></h5>
 <div class="ulist">
@@ -3125,4 +3174,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:11:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:26:09 UTC</div></div></div></body></html>
