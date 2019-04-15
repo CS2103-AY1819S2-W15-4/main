@@ -80,14 +80,15 @@
 <li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
-<li><a href="#schedule-duties-for-next-month">H.4. Schedule duties for next month</a></li>
-<li><a href="#confirm-schedule-for-next-month">H.5. Confirm schedule for next month</a></li>
-<li><a href="#reward-points-to-persons">H.6. Reward points to persons</a></li>
-<li><a href="#penalize-points-to-persons">H.7. Penalize points to persons</a></li>
-<li><a href="#change-duty-settings">H.8. Change duty settings</a></li>
-<li><a href="#blockdatecommand-tests">H.9. BlockDateCommand Tests</a></li>
+<li><a href="#authentication">H.2. Authentication</a></li>
+<li><a href="#deleting-a-person">H.3. Deleting a person</a></li>
+<li><a href="#saving-data">H.4. Saving data</a></li>
+<li><a href="#schedule-duties-for-next-month">H.5. Schedule duties for next month</a></li>
+<li><a href="#confirm-schedule-for-next-month">H.6. Confirm schedule for next month</a></li>
+<li><a href="#reward-points-to-persons">H.7. Reward points to persons</a></li>
+<li><a href="#penalize-points-to-persons">H.8. Penalize points to persons</a></li>
+<li><a href="#change-duty-settings">H.9. Change duty settings</a></li>
+<li><a href="#blockdatecommand-tests">H.10. BlockDateCommand Tests</a></li>
 </ul>
 </li>
 </ul>
@@ -3309,7 +3310,56 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="authentication"><a class="link" href="#authentication">H.2. Authentication</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Using another account, and with the correct authority level.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Password and UserType are changed. Add 2 people using the <code>add</code> command, edit the second person&#8217;s password and UserType using the <code>edit</code> command:
+<code>edit 2 pw/pass u/A</code>. Then exit the program.</p>
+</li>
+<li>
+<p>Test case: log back in with the first person&#8217;s NRIC as username and password.<br>
+Expected: logs in.</p>
+</li>
+<li>
+<p>Test case: use command <code>clear</code>.<br>
+Expected: User cannot use the clear command.</p>
+</li>
+<li>
+<p>Test case: use <code>edit</code> command on any field. Eg: <code>edit n/John</code><br>
+Expected: user will change own account fields.</p>
+</li>
+<li>
+<p>Test case: use exit the program, then log in with second person&#8217;s NRIC as username, and 'pass' as password.<br>
+Expected: Able to log in.</p>
+</li>
+<li>
+<p>Test case: use an admin type command, like <code>add</code>.<br>
+Expected: able to add.</p>
+</li>
+<li>
+<p>Test case: edit own NRIC or usertype. Example: <code>edit INDEX nr/S9676543K</code>, where INDEX corresponds to your own account.<br>
+Expected: program will exit by itself, user edited (Can check by logging back in using "Admin" as username and password).</p>
+</li>
+<li>
+<p>Test case: login to another admin account (besides the one with "Admin" as a username and password), and delete own account using <code>delete INDEX</code>.
+Expected: program will exit by itself.</p>
+</li>
+<li>
+<p>Add more admin and general accounts, and try using both admin and general commands to see if they can use the correct commands based on their authority.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.3. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3341,7 +3391,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">H.4. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3361,7 +3411,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="schedule-duties-for-next-month"><a class="link" href="#schedule-duties-for-next-month">H.4. Schedule duties for next month</a></h3>
+<h3 id="schedule-duties-for-next-month"><a class="link" href="#schedule-duties-for-next-month">H.5. Schedule duties for next month</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3383,7 +3433,7 @@ Scroll down to see the duty roster and points to be awarded to the persons.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="confirm-schedule-for-next-month"><a class="link" href="#confirm-schedule-for-next-month">H.5. Confirm schedule for next month</a></h3>
+<h3 id="confirm-schedule-for-next-month"><a class="link" href="#confirm-schedule-for-next-month">H.6. Confirm schedule for next month</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3406,7 +3456,7 @@ Call <code>viewNext</code> to see the confirmed schedule on the calendar.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="reward-points-to-persons"><a class="link" href="#reward-points-to-persons">H.6. Reward points to persons</a></h3>
+<h3 id="reward-points-to-persons"><a class="link" href="#reward-points-to-persons">H.7. Reward points to persons</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3431,7 +3481,7 @@ Expected: 1st, 3nd and 4th persons on the contact list have their duty points in
 </div>
 </div>
 <div class="sect2">
-<h3 id="penalize-points-to-persons"><a class="link" href="#penalize-points-to-persons">H.7. Penalize points to persons</a></h3>
+<h3 id="penalize-points-to-persons"><a class="link" href="#penalize-points-to-persons">H.8. Penalize points to persons</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3456,7 +3506,7 @@ Expected: 2nd and 3rd persons on the contact list have their duty points decreas
 </div>
 </div>
 <div class="sect2">
-<h3 id="change-duty-settings"><a class="link" href="#change-duty-settings">H.8. Change duty settings</a></h3>
+<h3 id="change-duty-settings"><a class="link" href="#change-duty-settings">H.9. Change duty settings</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3481,7 +3531,7 @@ Expected: Sunday duties now require 5 persons and worth 10 points each. Call <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="blockdatecommand-tests"><a class="link" href="#blockdatecommand-tests">H.9. BlockDateCommand Tests</a></h3>
+<h3 id="blockdatecommand-tests"><a class="link" href="#blockdatecommand-tests">H.10. BlockDateCommand Tests</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3515,4 +3565,4 @@ Expected : CommandException will be thrown to show confirmed schedule. No dates 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:36:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:40:47 UTC</div></div></div></body></html>
