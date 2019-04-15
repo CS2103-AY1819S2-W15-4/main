@@ -284,6 +284,11 @@
 <div class="paragraph">
 <p><strong>Swap Request Creation</strong></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SwapRequestSequenceDiagram.png" alt="SwapRequestSequenceDiagram" width="800">
+</div>
+</div>
 <div class="paragraph">
 <p>There is currently a Java class called Request in the request folder in the model package. This request represents a swap request that a duty personnel submits using the 'swap' command. It has 4 fields, the requester Person object, the allocated date (out of which the requester wants to swap) as a java.time.LocalDate object, the requested date (into which the requester wants to swap) also as a LocalDate object, and the accepter Person object, which could be null.</p>
 </div>
@@ -324,6 +329,138 @@
 <p>The admin user can then use 'approveSwap' or 'rejectSwap' to approve or reject a paired swap in the list displayed in the ResultDisplay after executing the viewSwaps command. These are encapsulated in the ApproveSwapCommand and RejectSwapCommand classes.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-nature-of-swap-request"><a class="link" href="#aspect-nature-of-swap-request">Aspect : Nature of swap request</a></h5>
+<div class="paragraph">
+<p>Alternative 1 (current choice):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow users to submit an open swap request, giving only their allocated date and requested date. This is then broadcast onto the app for other users to view.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Everything is done on the app and the user doesn&#8217;t have to go around asking everyone if they are available to swap.</p>
+</li>
+<li>
+<p>Cons: More steps in the process. 3 step process: request swap, accept swap, approve/reject swap.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 2:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Users are to find a swap partner offline before requesting a swap, keying in the 2 dates and the partner&#8217;s NRIC. This request will then go straight to the admin for approval.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:  Simpler implementation</p>
+</li>
+<li>
+<p>Cons: The admin needs to verify with the accepter if he really accepted the swap.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:40:47 UTC</div></div></div></body></html>
+</div>
+<div class="sect3">
+<h4 id="aspect-container-for-requests"><a class="link" href="#aspect-container-for-requests">Aspect: Container for Requests</a></h4>
+<div class="paragraph">
+<p>Alternative 1 (current choice):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Requests are contained in a list in the personnel database, with each request containing its requester&#8217;s Person object and its accepter&#8217;s Person object, if present.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The requests can be easily looked up and the persons found within them.</p>
+</li>
+<li>
+<p>Cons: When the edit command is executed, the program needs to iterate through the entire list of requests to update the relevant person to a new Person object.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 2:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Requests are stored inside a Person object, presumably the requester&#8217;s Person object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This eliminates the need for the Request object to store the requester and a person&#8217;s requests can be easily looked up. When a person is deleted, their requests will be deleted along with it, which is very convenient.</p>
+</li>
+<li>
+<p>Cons: If the accepter Person does not contain the request that he accepted, it would be even more complicated to find his request. The program would need to look through every person, in which every request is looked up to find the right accepter.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-viewing-of-open-swap-requests"><a class="link" href="#aspect-viewing-of-open-swap-requests">Aspect: Viewing of Open Swap Requests</a></h4>
+<div class="paragraph">
+<p>Alternative 1 (current choice):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Display the list of open swap requests in the browser panel for all to see.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Wide viewership. A user can easily advertise his swap request.</p>
+</li>
+<li>
+<p>Cons: -</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 2:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a command for personnel to view open swap requests</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The browser panel can be used for something else.</p>
+</li>
+<li>
+<p>Cons: No incentive for users to view open swap requests.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:42:43 UTC</div></div></div></body></html>
