@@ -20,7 +20,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: Added Block Date Command</p>
+<p><strong>Major enhancement</strong>: Added Block Date Commands</p>
 <div class="ulist">
 <ul>
 <li>
@@ -39,21 +39,24 @@
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Added a command to view blocked Dates</p>
+<p><strong>Minor enhancement</strong>: Added a command to view and remove blocked Dates</p>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=valatheking&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-04-03&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Code</a>]</p>
 </li>
 <li>
-<p><strong>Other contributions</strong>:</p>
+<p><strong>Other contributions</strong>:<br></p>
 <div class="ulist">
 <ul>
+<li>
+<p>Did testing the parsers for the different commands</p>
+</li>
 <li>
 <p>Project management:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed milestones and issue tracker for the project</p>
+<p>Managed milestones and issue tracker for the project.</p>
 </li>
 </ul>
 </div>
@@ -63,7 +66,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Edited the person class with NRIC and Rank (Pull requests <a href="https://github.com/CS2103-AY1819S2-W15-4/main/pull/31">#31</a>, )</p>
+<p>Edited the person class with NRIC and Rank (Pull requests <a href="https://github.com/CS2103-AY1819S2-W15-4/main/pull/31">#31</a>)</p>
 </li>
 </ul>
 </div>
@@ -75,6 +78,15 @@
 <li>
 <p>Did cosmetic tweaks to existing contents of the User Guide to modify it to a Duty Planner</p>
 </li>
+<li>
+<p>Updated User and Developer Guide with the new commands that were added in</p>
+</li>
+<li>
+<p>Modified AddressBook Diagrams to suit Personnel Database in Developer Guide</p>
+</li>
+<li>
+<p>Added in Block Dates section in Developer Guide</p>
+</li>
 </ul>
 </div>
 </li>
@@ -83,10 +95,8 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments):</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/830">#1</a>,
+<a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/609">2</a>, <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/697">3</a>)</p>
 </li>
 </ul>
 </div>
@@ -106,9 +116,6 @@
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -127,6 +134,133 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MINDEF Duty Planner is a platform to assist military units in the SAF in the assignment of daily guard duties amongst the servicemen.<br>
+The application is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+The software is designed to automate the process of fairly assigning duties to available servicemen for an entire month.<br>
+The application can be used by both Commanders and servicemen to plan and view duties with various specific commands for each type of user.<br>
+To start using MINDEF Duty Planner you can go to <a href="#Quick Start">[Quick Start]</a><br>
+To see a summary list of commands you can go to <a href="#Command Summary">[Command Summary]</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="notation"><a class="link" href="#notation">Notation</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Words that are highlighted with a grey background
+represent a  <code>command</code> that is present or used in the
+application.</p>
+</li>
+<li>
+<p>Words that are highlighted in white represent a <kbd>keyboard</kbd> button that
+can be pressed to invoke a described function.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="view-all-duties-for-current-month-code-viewcurrent-code"><a class="link" href="#view-all-duties-for-current-month-code-viewcurrent-code">View all duties for current month: <code>viewCurrent</code></a></h4>
+<div class="paragraph">
+<p>Brings up calendar view, with all duties for the current month.<br>
+Format: <code>viewCurrent</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-all-duties-for-next-month-code-viewnext-code"><a class="link" href="#view-all-duties-for-next-month-code-viewnext-code">View all duties for next month: <code>viewNext</code></a></h4>
+<div class="paragraph">
+<p>Brings up calendar view, with all duties for the next month.<br>
+Format: <code>viewNext</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="block-dates-code-block-code-br"><a class="link" href="#block-dates-code-block-code-br">Block dates : <code>block</code><br></a></h4>
+<div class="paragraph">
+<p>The user can block dates and set which dates they are unavailable to duties for the upcoming month. A user can block up to 15 days.<br>
+Format: <code>block DATE DATE DATE &#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The date entered must be a valid number for the upcoming month. For example if the next month is February, block 30 is an invalid input.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This command can only be entered if next month&#8217;s duty schedule has not been confirmed yet.
+If it has been confirmed please request a swap on the day you wish to duties.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the user has successfully blocked dates they will not be scheduled for duties on the blocked days in the upcoming month.<br></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>block 3 6 15 21 30</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-blocked-dates-code-viewblock-code-br"><a class="link" href="#view-blocked-dates-code-viewblock-code-br">View blocked dates : <code>viewblock</code><br></a></h4>
+<div class="paragraph">
+<p>The user can view the dates they have blocked for the upcoming month.<br>
+The blocked dates for the upcoming month will then be printed out for the user to see.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>viewblock</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-blocked-dates-code-removeblock-code-br"><a class="link" href="#remove-blocked-dates-code-removeblock-code-br">Remove blocked dates : <code>removeblock</code><br></a></h4>
+<div class="paragraph">
+<p>The user can remove the dates they have blocked for the upcoming month. This will remove all blocked days from the upcoming month.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>removeblock</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A specific date cannot be removed from the list of blocked dates. If a user wishes to remove only a certain day he can removeblock and run the block command again.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -139,5 +273,80 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="block-dates-feature"><a class="link" href="#block-dates-feature">Block Dates Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The block dates feature is facilitated by PersonnelDatabase and was implemented for general users as they cannot be expected to do duties any time during the upcoming month.
+They may have certain dates that are busy or do not wish to do duties and as such they can block the dates in the PersonnelDatabase.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 09:43:25 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p>Block Dates was done by adding 3 new commands to the <code>Logic</code> which are <code>BlockDateCommand</code>, <code>ViewBlockCommand</code>, <code>RemoveBlockCommand</code>.
+Modifications and methods were also added in <code>Model</code> and <code>Storage</code> to implement the blocking of dates in Duty planning and storage.</p>
+</div>
+<div class="paragraph">
+<p><code>BlockDateCommand</code> works like other commands in the Duty Planner. The command is read a text string from the MainWindow in UI.
+The sequence diagram for the interaction is below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BlockDateStateDiagram.png" alt="BlockDateStateDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 1 :<br>
+As seen in the diagram above. The MainWindow calls the execute Command in Logic and passes in the command text, userName and userType of the logged in user.</p>
+</div>
+<div class="paragraph">
+<p>Step 2 :<br>
+The LogicManager then passes the command text, userName and userType to PersonnelDatabaseParser and it determines the type of command by parsing the String input.
+Using certain command words, the PersonnelDatabase Parser determines what the command is and then passes the parsed commandText, userName and userType to the BlockDateCommandParser.</p>
+</div>
+<div class="paragraph">
+<p>Step 3 :<br>
+The BlockDateCommandParser
+The BlockDateCommandParser takes in the dates list as a String and parses it into a Integer List which is used in the model.
+The BlockDateCommandParser then passes in the Integer List, userType and userName to BlockDateCommand.
+It checks for valid Integer inputs for days in the next month and will throw an exception if the dates entered are not valid</p>
+</div>
+<div class="paragraph">
+<p>Step 4 :<br>
+The logic for BlockDateCommand follows the activity diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BlockDateActivityDiagram.png" alt="BlockDateActivityDiagram" width="800">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The first check is the userType, if you are an Admin you will not be able to access this command</p>
+</li>
+<li>
+<p>The second check is to see the schedule has already been confirmed for nex month. If so the user cannot block any dates for the upcoming month</p>
+</li>
+<li>
+<p>The third check is to see the number of dates blocked and if they are more than 15, an exception will be thrown.
+This is to ensure that commander have enough people to schedule duties. You can change this number if you wish to do so by updating the
+MAX_BLOCKS_NUMBER in BlockDateCommand</p>
+</li>
+<li>
+<p>If the user passes all check the Command will enter Step 5</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Step 5 :<br>
+The BlockDateCommand then passes the Integer List to the model where it is stored in a Hashmap in DutyMonth.
+DutyMonth has a Hashmap&lt;Person, List&lt;Integer&gt;&gt; blockedDays object to allow it to store the blockedDays of every person for the upcoming month.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:05:48 UTC</div></div></div></body></html>

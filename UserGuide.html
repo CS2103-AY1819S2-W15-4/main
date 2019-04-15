@@ -16,7 +16,7 @@
 <ul class="sectlevel2">
 <li><a href="#log-in">4.1. Log in</a></li>
 <li><a href="#features-for-all-users">4.2. Features for all users</a></li>
-<li><a href="#general-user-features">4.3. General User Features</a></li>
+<li><a href="#general-non-master-admin-user-features">4.3. General / Non-master Admin User Features</a></li>
 <li><a href="#admin-features">4.4. Admin Features</a></li>
 </ul>
 </li>
@@ -75,10 +75,10 @@ can be pressed to invoke a described function.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For admin account: NRIC is Admin, password is Admin</p>
+<p>For master admin account: username is Admin, password is Admin</p>
 </li>
 <li>
-<p>For general account: NRIC is the user&#8217;s NRIC, password is NRIC by default which can be changed.</p>
+<p>For other admin or general account: username is the user&#8217;s NRIC, password is NRIC by default which can be changed.</p>
 </li>
 </ul>
 </div>
@@ -162,7 +162,7 @@ Enter in NRIC and password into the top and bottom text areas respectively, pres
 </li>
 <li>
 <p>Admin accounts have access to more commands, or more functionalities for some kind of commands.
-The commands for each type of account are listed in <a href="#features-for-all-users">Section 4.2, &#8220;Features for all users&#8221;</a>,<a href="#general-user-features">Section 4.3, &#8220;General User Features&#8221;</a> and <a href="#admin-features">Section 4.4, &#8220;Admin Features&#8221;</a></p>
+The commands for each type of account are listed in <a href="#features-for-all-users">Section 4.2, &#8220;Features for all users&#8221;</a>,<a href="#General User Features">[General User Features]</a> and <a href="#admin-features">Section 4.4, &#8220;Admin Features&#8221;</a></p>
 </li>
 </ul>
 </div>
@@ -206,9 +206,9 @@ Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-the-users-code-list-code"><a class="link" href="#list-all-the-users-code-list-code">4.2.2. List all the users: <code>list</code></a></h4>
+<h4 id="list-all-the-personnel-code-list-code"><a class="link" href="#list-all-the-personnel-code-list-code">4.2.2. List all the personnel: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Lists out all users with their details.<br>
+<p>Lists out all personnel in the database with their details.<br>
 Format: <code>list</code></p>
 </div>
 </div>
@@ -236,7 +236,7 @@ Format: <code>view</code></p>
 <div class="sect3">
 <h4 id="view-duties-assigned-to-other-users-code-view-code"><a class="link" href="#view-duties-assigned-to-other-users-code-view-code">4.2.6. View duties assigned to other users : <code>view</code></a></h4>
 <div class="paragraph">
-<p>The user can see their details about their own duties assigned to other users.<br>
+<p>The user can see the details of duties assigned to another user by keying in their NRIC.<br>
 Format: <code>view NRIC</code></p>
 </div>
 <div class="paragraph">
@@ -420,12 +420,12 @@ Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="general-user-features"><a class="link" href="#general-user-features">4.3. General User Features</a></h3>
+<h3 id="general-non-master-admin-user-features"><a class="link" href="#general-non-master-admin-user-features">4.3. General / Non-master Admin User Features</a></h3>
 <div class="sect3">
 <h4 id="edit-own-details-code-edit-code"><a class="link" href="#edit-own-details-code-edit-code">4.3.1. Edit own details : <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edits user&#8217;s own details. Can edit one or more fields.<br>
-Format: <code>edit INDEX [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code></p>
+Format: <code>edit [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -464,11 +464,29 @@ Edits the company of the user to be <code>Hotel</code>, clears all existing tags
 </div>
 </div>
 <div class="sect3">
-<h4 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">4.3.2. Make a swap request with another user : <code>swap</code></a></h4>
+<h4 id="make-an-open-swap-request-code-swap-code"><a class="link" href="#make-an-open-swap-request-code-swap-code">4.3.2. Make an open swap request : <code>swap</code></a></h4>
 <div class="paragraph">
-<p>The user can request for a duty swap with another user. This will be subject to the agreement of the other user and approval of the admin (i.e. commander).<br>
-The other user and admin will be notified upon login and they will be prompted to accept or decline the request.<br>
-Format: `swap ad/CURRENTDUTYDATE rd/DESIREDDUTYDATE</p>
+<p>The user can request for a duty swap with another user for the next month by keying in his current duty date and his requested date. This request will appear on the browser panel on the bottom right of the app for all to see. Another user can use the acceptSwap command to agree to the swap request. This is then subject to the approval of an admin user (i.e. commander).<br></p>
+</div>
+<div class="paragraph">
+<p>Format: `swap ad/ALLOCATEDDUTYDATE (DDMMYY) rd/REQUESTEDDUTYDATE (DDMMYY)</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The command is only valid if the user has a duty allocated on the ad/ date and does not have a duty on the rd/ date. Otherwise, an error message will be shown.</p>
+</li>
+<li>
+<p>At the start of a new month, all existing swaps, open or paired, will be deleted.</p>
+</li>
+<li>
+<p>The user must refrain from requesting for two swaps for a duty on the same day. The code to restrict this behaviour will be implemented in v2.0.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -476,18 +494,48 @@ Format: `swap ad/CURRENTDUTYDATE rd/DESIREDDUTYDATE</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>swap ad/14022019 rd/21022019 t/Please help a bro out!</code></p>
+<p><code>swap ad/140219 rd/210219</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="approve-swap-command-code-acceptswap-code"><a class="link" href="#approve-swap-command-code-acceptswap-code">4.3.3. Approve Swap Command : <code>acceptSwap</code></a></h4>
+<h4 id="accept-swap-command-code-acceptswap-code"><a class="link" href="#accept-swap-command-code-acceptswap-code">4.3.3. Accept Swap Command : <code>acceptSwap</code></a></h4>
 <div class="paragraph">
-<p>The General User can use this command to accept a certain swap at the given index on the open Swap Requests list.</p>
+<p>The user can use this command to respond to and accept a certain swap at the given index on the open swap request list in the browser panel.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>approveSwap i/INDEX</code></p>
+<p>Format : <code>acceptSwap INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The command is only valid if the user has a duty allocated on the rd/ date and does not have a duty on the ad/ date. Otherwise, an error message will be shown.</p>
+</li>
+<li>
+<p>A non-positive index or an index which exceeds the list size will result in an error message.</p>
+</li>
+<li>
+<p>At the start of a new month, all existing swaps, open or paired, will be deleted.</p>
+</li>
+<li>
+<p>The user must refrain from accepting two swaps for a duty on the same day. The code to restrict this behaviour will be implemented in v2.0.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>'acceptSwap 1'</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -578,7 +626,7 @@ The blocked dates for the upcoming month will then be printed out for the user t
 <div class="sect3">
 <h4 id="adding-a-user-code-add-code"><a class="link" href="#adding-a-user-code-add-code">4.4.1. Adding a user : <code>add</code></a></h4>
 <div class="paragraph">
-<p>Add a user to the system with the corresponding NRIC, password, company, section, rank, name and contact number.<br>
+<p>Add a user to the system with the corresponding NRIC, company, section, rank, name and contact number.<br>
 Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</code></p>
 </div>
 <div class="sidebarblock">
@@ -590,6 +638,9 @@ Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</cod
 </li>
 <li>
 <p>Password and account type can be changed using the <code>edit</code> command.</p>
+</li>
+<li>
+<p>The entries can be in any order, except for tag, which must be at the end.</p>
 </li>
 <li>
 <p>Tag always has to be the last field. eg. <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME [t/TAG] p/PHONE</code> will not work.</p>
@@ -964,9 +1015,9 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-swap-command-code-viewswaps-code"><a class="link" href="#view-swap-command-code-viewswaps-code">4.4.11. View Swap Command : <code>viewSwaps</code></a></h4>
+<h4 id="view-swaps-command-code-viewswaps-code"><a class="link" href="#view-swaps-command-code-viewswaps-code">4.4.11. View Swaps Command : <code>viewSwaps</code></a></h4>
 <div class="paragraph">
-<p>Used to view all the swap requests that have been submitted by personnel. The Admin User can then accept or reject the swap</p>
+<p>Used to view all the swap requests that have a requester-accepter pair. The list will be shown in the results display. The Admin User can then accept or reject the swap using the AcceptSwap or RejectSwap command.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>viewSwaps</code></p>
@@ -975,19 +1026,66 @@ The command <code>schedule</code> merely provides a viable duty schedule and <st
 <div class="sect3">
 <h4 id="approve-swap-command-code-approveswap-code"><a class="link" href="#approve-swap-command-code-approveswap-code">4.4.12. Approve Swap Command : <code>approveSwap</code></a></h4>
 <div class="paragraph">
-<p>The Admin User can use this command to approve a certain swap at the given index on the requested Swap list.</p>
+<p>The Admin User can use this command to approve a certain swap at the given index in the list of paired swap requests in the results display after a viewSwaps command. This will edit the duties in the schedule as well as the points for each user. Thereafter, the request will be deleted.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>approveSwap i/INDEX</code></p>
+<p>Format : <code>approveSwap INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>A non-positive index or an index which exceeds the list size will result in an error message.</p>
+</li>
+<li>
+<p>At the start of a new month, all existing swaps, open or paired, will be deleted.</p>
+</li>
+<li>
+<p>The users involved in the swap request must refrain from making or accepting two swaps for a duty on the same day. The code to restrict this behaviour will be implemented in v2.0.</p>
+</li>
+<li>
+<p>The approve swap request will still work even if the list is not showing at the results display. The index will refer to the request that would be in the list if the list were displayed (The order of the list does not change)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example: 'approveSwap 1'<br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="reject-swap-command-code-rejectswap-code"><a class="link" href="#reject-swap-command-code-rejectswap-code">4.4.13. Reject Swap Command : <code>rejectSwap</code></a></h4>
 <div class="paragraph">
-<p>The Admin User can use this command to reject a certain swap at the given index on the swap requests list.</p>
+<p>The Admin User can use this command to reject a certain swap at the given index in the list of paired swap requests in the results display after a viewSwaps command. Thereafter, the request will be deleted.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>rejectSwap i/INDEX</code></p>
+<p>Format : <code>rejectSwap INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>A non-positive index or an index which exceeds the list size will result in an error message.</p>
+</li>
+<li>
+<p>At the start of a new month, all existing swaps, open or paired, will be deleted.</p>
+</li>
+<li>
+<p>The users involved in the swap request must refrain from making or accepting two swaps for a duty on the same day. The code to restrict this behaviour will be implemented in v2.0.</p>
+</li>
+<li>
+<p>The reject swap request will still work even if the list is not showing at the results display. The index will refer to the request that would be in the list if the list were displayed (The order of the list does not change)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:
+* 'rejectSwap 1'</p>
 </div>
 </div>
 </div>
@@ -1048,7 +1146,7 @@ Your password is also your NRIC by default, unless you or your administrator cha
 <p><strong>List all the users</strong> : <code>list</code><br></p>
 </li>
 <li>
-<p><strong>Locate person by name</strong> : <code>find</code><br></p>
+<p><strong>Locate person by name</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br></p>
 </li>
 <li>
 <p><strong>List entered commands</strong> : <code>history</code><br></p>
@@ -1125,4 +1223,4 @@ Your password is also your NRIC by default, unless you or your administrator cha
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 09:43:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:05:48 UTC</div></div></div></body></html>

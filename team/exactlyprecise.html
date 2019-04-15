@@ -166,7 +166,7 @@ Format: <code>viewNext</code></p>
 <div class="sect3">
 <h4 id="adding-a-user-code-add-code"><a class="link" href="#adding-a-user-code-add-code">Adding a user : <code>add</code></a></h4>
 <div class="paragraph">
-<p>Add a user to the system with the corresponding NRIC, password, company, section, rank, name and contact number.<br>
+<p>Add a user to the system with the corresponding NRIC, company, section, rank, name and contact number.<br>
 Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</code></p>
 </div>
 <div class="sidebarblock">
@@ -178,6 +178,9 @@ Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</cod
 </li>
 <li>
 <p>Password and account type can be changed using the <code>edit</code> command.</p>
+</li>
+<li>
+<p>The entries can be in any order, except for tag, which must be at the end.</p>
 </li>
 <li>
 <p>Tag always has to be the last field. eg. <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME [t/TAG] p/PHONE</code> will not work.</p>
@@ -231,7 +234,7 @@ Adds CFC William Tan in Echo Company Section 2 into the database.</p>
 <h4 id="edit-own-details-code-edit-code"><a class="link" href="#edit-own-details-code-edit-code">Edit own details : <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edits user&#8217;s own details. Can edit one or more fields.<br>
-Format: <code>edit INDEX [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code></p>
+Format: <code>edit [c/COMPANY] [s/SECTION] [r/RANK] [n/NAME] [p/PHONE] [t/TAG] [pw/PASSWORD]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -415,4 +418,4 @@ To handle security concerns of the user changing his own NRIC or UserType, the p
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 09:43:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:05:48 UTC</div></div></div></body></html>
