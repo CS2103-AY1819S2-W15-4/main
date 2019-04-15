@@ -251,25 +251,7 @@ Format: <code>view NRIC</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">4.2.7. Make a swap request with another user : <code>swap</code></a></h4>
-<div class="paragraph">
-<p>The user can request for a duty swap with another user. This will be subject to the agreement of the other user and approval of the admin (i.e. commander).<br>
-The other user and admin will be notified upon login and they will be prompted to accept or decline the request.<br>
-Format: `swap ad/CURRENTDUTYDATE rd/DESIREDDUTYDATE</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>swap ad/14022019 rd/21022019 t/Please help a bro out!</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.2.8. Locating persons by name: <code>find</code></a></h4>
+<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.2.7. Locating persons by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -314,7 +296,7 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.2.9. Listing entered commands : <code>history</code></a></h4>
+<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.2.8. Listing entered commands : <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -335,7 +317,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.2.10. Undoing previous command : <code>undo</code></a></h4>
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.2.9. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -393,7 +375,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect3">
-<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.2.11. Redoing the previously undone command : <code>redo</code></a></h4>
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.2.10. Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -430,7 +412,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">4.2.12. Exit : <code>exit</code></a></h4>
+<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">4.2.11. Exit : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program. User will be logged out automatically.<br>
 Format: <code>exit</code></p>
@@ -482,7 +464,34 @@ Edits the company of the user to be <code>Hotel</code>, clears all existing tags
 </div>
 </div>
 <div class="sect3">
-<h4 id="block-dates-code-block-code-br"><a class="link" href="#block-dates-code-block-code-br">4.3.2. Block dates : <code>block</code><br></a></h4>
+<h4 id="make-a-swap-request-with-another-user-code-swap-code"><a class="link" href="#make-a-swap-request-with-another-user-code-swap-code">4.3.2. Make a swap request with another user : <code>swap</code></a></h4>
+<div class="paragraph">
+<p>The user can request for a duty swap with another user. This will be subject to the agreement of the other user and approval of the admin (i.e. commander).<br>
+The other user and admin will be notified upon login and they will be prompted to accept or decline the request.<br>
+Format: `swap ad/CURRENTDUTYDATE rd/DESIREDDUTYDATE</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>swap ad/14022019 rd/21022019 t/Please help a bro out!</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="approve-swap-command-code-acceptswap-code"><a class="link" href="#approve-swap-command-code-acceptswap-code">4.3.3. Approve Swap Command : <code>acceptSwap</code></a></h4>
+<div class="paragraph">
+<p>The General User can use this command to accept a certain swap at the given index on the open Swap Requests list.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>approveSwap i/INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="block-dates-code-block-code-br"><a class="link" href="#block-dates-code-block-code-br">4.3.4. Block dates : <code>block</code><br></a></h4>
 <div class="paragraph">
 <p>The user can block dates and set which dates they are unavailable to duties for the upcoming month. A user can block up to 15 days.<br>
 Format: <code>block DATE DATE DATE &#8230;&#8203;</code></p>
@@ -531,7 +540,7 @@ If it has been confirmed please request a swap on the day you wish to duties.</p
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-blocked-dates-code-viewblock-code-br"><a class="link" href="#view-blocked-dates-code-viewblock-code-br">4.3.3. View blocked dates : <code>viewblock</code><br></a></h4>
+<h4 id="view-blocked-dates-code-viewblock-code-br"><a class="link" href="#view-blocked-dates-code-viewblock-code-br">4.3.5. View blocked dates : <code>viewblock</code><br></a></h4>
 <div class="paragraph">
 <p>The user can view the dates they have blocked for the upcoming month.<br>
 The blocked dates for the upcoming month will then be printed out for the user to see.<br></p>
@@ -541,7 +550,7 @@ The blocked dates for the upcoming month will then be printed out for the user t
 </div>
 </div>
 <div class="sect3">
-<h4 id="remove-blocked-dates-code-removeblock-code-br"><a class="link" href="#remove-blocked-dates-code-removeblock-code-br">4.3.4. Remove blocked dates : <code>removeblock</code><br></a></h4>
+<h4 id="remove-blocked-dates-code-removeblock-code-br"><a class="link" href="#remove-blocked-dates-code-removeblock-code-br">4.3.6. Remove blocked dates : <code>removeblock</code><br></a></h4>
 <div class="paragraph">
 <p>The user can remove the dates they have blocked for the upcoming month. This will remove all blocked days from the upcoming month.<br></p>
 </div>
@@ -597,8 +606,7 @@ Format: <code>add nr/NRIC c/COMPANY s/SECTION r/RANK n/NAME p/PHONE [t/TAG]</cod
 <div class="ulist">
 <ul>
 <li>
-<p><code>NRIC</code> should be of the format [S/T/F/G][7
-][A-Z].</p>
+<p><code>NRIC</code> should be of the format [S/T/F/G][7][A-Z].</p>
 </li>
 <li>
 <p><code>Company</code> can take any value and should not be blank.</p>
@@ -742,7 +750,7 @@ Edits the phone number and rank of the 2nd person to be <code>84523546</code> an
 </li>
 <li>
 <p><code>edit 1 c/Hotel t/ pw/pass</code><br>
-Edits the company of the 1st person to be <code>Hotel</code>, clears all existing tags, and changes passworrd to 'pass'.</p>
+Edits the company of the 1st person to be <code>Hotel</code>, clears all existing tags, and changes password to 'pass'.</p>
 </li>
 </ul>
 </div>
@@ -755,8 +763,17 @@ Edits the company of the 1st person to be <code>Hotel</code>, clears all existin
 <div class="paragraph">
 <p>Format:  <code>points [INDEX]</code></p>
 </div>
-<div class="paragraph">
-<p>Note that calling the command without index (<code>points</code>) provides a list of all persons and their accumulated duty points while calling the command with index (<code>points INDEX</code>) provides the accumulated duty points of an individual person and his record (i.e. duties, points rewarded, points penalized).</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling the command without index (<code>points</code>) provides a list of all persons and their accumulated duty points while calling the command with index (<code>points INDEX</code>) provides the accumulated duty points of an individual person and his record (i.e. duties, points rewarded, points penalized).
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -782,8 +799,12 @@ Displays a list of all persons and their respective duty points.</p>
 <div class="paragraph">
 <p>Format: <code>reward i/INDEX [INDEX] [INDEX] &#8230;&#8203; p/POINTS</code></p>
 </div>
-<div class="paragraph">
-<p>Note that points rewarded can range from 1 to 100 for each command call.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Points rewarded can range from 1 to 100 for each command call.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -809,8 +830,15 @@ Rewards 4 points to the 3th person on the contact list.</p>
 <div class="paragraph">
 <p>Format: <code>penalize i/INDEX [INDEX] [INDEX] &#8230;&#8203; p/POINTS</code></p>
 </div>
-<div class="paragraph">
-<p>Note that points penalized can range from 1 to 100 for each command call. The duty points of a person can fall to less than zero.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Points penalized can range from 1 to 100 for each command call.</p>
+</li>
+<li>
+<p>The duty points of a person can fall to less than zero.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -836,16 +864,42 @@ Penalize 4 points for the 3th person on the contact list.</p>
 <div class="paragraph">
 <p>Format: <code>settings [d/DAYOFWEEK m/MANPOWER p/POINTS]</code></p>
 </div>
-<div class="paragraph">
-<p><code>DAYOFWEEK</code>: Mon / Tue / Wed / Thur / Fri / Sat / Sun (full spelling e.g. Monday, Tuesday etc. works as well)<br>
-<code>MANPOWER</code>: Number ranging from 1 to 10<br>
-<code>POINTS</code>: Number ranging from 1 to 100</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DAYOFWEEK</code>: Mon / Tue / Wed / Thur / Fri / Sat / Sun (full spelling e.g. Monday, Tuesday etc. works as well)<br></p>
+</li>
+<li>
+<p><code>MANPOWER</code>: Number ranging from 1 to 10<br></p>
+</li>
+<li>
+<p><code>POINTS</code>: Number ranging from 1 to 100</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>Calling the command <code>settings</code> alone displays the current duty settings while calling the command <code>settings</code> with the day of the week, manpower and points enables the editing of the duty settings.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling the command <code>settings</code> alone displays the current duty settings while calling the command <code>settings</code> with the day of the week, manpower and points enables the editing of the duty settings.
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>Note that updated duty settings will only take effect the next time a schedule is confirmed. If schedule for next month has already been confirmed, the confirmed schedule will still follow the specifications of the previous duty settings.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The updated duty settings will only take effect the next time a schedule is confirmed. If schedule for next month has already been confirmed, the confirmed schedule will still follow the specifications of the previous duty settings.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -878,8 +932,17 @@ Duty settings edited. Monday duties now require 2 persons and 3 points will be r
 <div class="paragraph">
 <p>The algorithm is optimized such that a person with low duty points will be allocated to duties which rewards high points and possibly be given more duties. It automatically attempts to balance out the points of each person after scheduling.</p>
 </div>
-<div class="paragraph">
-<p>Note that <code>schedule</code> merely provides a viable duty schedule and <strong>does not confirm the schedule</strong> to the calendar. Duty points have also yet been updated. The schedule generated is not deterministic and calling <code>schedule</code> again will regenerate a new duty schedule.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command <code>schedule</code> merely provides a viable duty schedule and <strong>does not confirm the schedule</strong> to the calendar. Duty points have also yet been updated. The schedule generated is not deterministic and calling <code>schedule</code> again will regenerate a new duty schedule.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Once a satisfactory duty schedule is generated, the administrator can go ahead to confirm the duty schedule. (See 4.4.10 Confirm a schedule)</p>
@@ -898,6 +961,33 @@ Duty settings edited. Monday duties now require 2 persons and 3 points will be r
 </div>
 <div class="paragraph">
 <p>A confirmed duty schedule can be viewed on the calendar (using the <code>viewNext</code> command). Duty points will be updated accordingly to reward those who were assigned duties.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-swap-command-code-viewswaps-code"><a class="link" href="#view-swap-command-code-viewswaps-code">4.4.11. View Swap Command : <code>viewSwaps</code></a></h4>
+<div class="paragraph">
+<p>Used to view all the swap requests that have been submitted by personnel. The Admin User can then accept or reject the swap</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>viewSwaps</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="approve-swap-command-code-approveswap-code"><a class="link" href="#approve-swap-command-code-approveswap-code">4.4.12. Approve Swap Command : <code>approveSwap</code></a></h4>
+<div class="paragraph">
+<p>The Admin User can use this command to approve a certain swap at the given index on the requested Swap list.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>approveSwap i/INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reject-swap-command-code-rejectswap-code"><a class="link" href="#reject-swap-command-code-rejectswap-code">4.4.13. Reject Swap Command : <code>rejectSwap</code></a></h4>
+<div class="paragraph">
+<p>The Admin User can use this command to reject a certain swap at the given index on the swap requests list.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>rejectSwap i/INDEX</code></p>
 </div>
 </div>
 </div>
@@ -991,6 +1081,9 @@ Your password is also your NRIC by default, unless you or your administrator cha
 <li>
 <p><strong>Remove Blocked Dates</strong> : <code>removeblock</code><br></p>
 </li>
+<li>
+<p><strong>Accept Swaps</strong> : <code>acceptSwap i/INDEX</code></p>
+</li>
 </ul>
 </div>
 </div>
@@ -1016,8 +1109,20 @@ Your password is also your NRIC by default, unless you or your administrator cha
 <li>
 <p><strong>Clear entries</strong> : <code>clear</code><br></p>
 </li>
+<li>
+<p><strong>Duty Settings</strong> : <code>settings</code> or <code>settings d/DAY m/MANPOWER p/POINTS</code></p>
+</li>
+<li>
+<p><strong>View Swaps</strong> : <code>viewSwaps</code></p>
+</li>
+<li>
+<p><strong>Approve Swaps</strong> : <code>ApproveSwap i/INDEX</code></p>
+</li>
+<li>
+<p><strong>Reject Swaps</strong> : <code>rejectSwap i/INDEX</code></p>
+</li>
 </ul>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 19:43:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 02:57:08 UTC</div></div></div></body></html>
