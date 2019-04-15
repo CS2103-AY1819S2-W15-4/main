@@ -345,7 +345,15 @@ Someone else will then replace them in the previously assigned duty.
 A more detailed explanation of the scheduling algorithm is in <a href="#Duty Settings">[Duty Settings]</a>.</p>
 </div>
 <div class="paragraph">
-<p>==== Design Considerations:
+<p>==== Additional Commands
+Commands <code>viewblock</code> and removeblock` were added for the users convenience. This helps the users to find and modify the Blocked Dates for the upcoming Month.
+These two commands access the HashMap in the Model associated with blockedDates and either view or remove the blockedDates for the current user.
+The Hashmap uses a Person object as a key. The logged in user&#8217;s NRIC is used to obtain the current User person object and that is used as the key to retrieve the information from the Hashmap.
+All this is done through the model with methods such as <code>getBlockedDates</code> and `removeBlockedDays respectively for view and remove.</p>
+</div>
+<div class="paragraph">
+<p>These two commands complete the suite of blocking which allows users to experience more flexibility in their duty planning.
+==== Design Considerations:
 * Alternative 1 (current implementation): BlockDateCommand takes in a few dates they are then stored in the personnel database as a Hashmap.
 <strong> Pros :
 </strong>* Easy to implement as a new Command. Parsers have already been set up in address book and adding a new command is relatively easy to implement.
@@ -364,19 +372,24 @@ A more detailed explanation of the scheduling algorithm is in <a href="#Duty Set
 </ul>
 </div>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Implemented Fix for Cons :
-</strong>* To combat the above issue, Model was given methods to add the blockedDates into the Personnel Database rather than the command itself.
+<li>
+<p>Implemented Fix for Cons :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To combat the above issue, Model was given methods to add the blockedDates into the Personnel Database rather than the command itself.
 This allows the logic to pass the dates to the model which would then integrate it into the Personnel Database.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
 <p>Alternative 2 (current implementation): BlockDateCommand takes in a few dates they are then stored as a new Class called BlockedDates</p>
-<div class="ulist">
-<ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p>Pros :</p>
 <div class="ulist">
@@ -397,9 +410,6 @@ This allows the logic to pass the dates to the model which would then integrate 
 <li>
 <p>The implementation of a BlockedDate Class would complicated the process of integrating into the schedule much harder.
 Implementing the BlockedDate into the algorithm would be a lot harder and would take more time and effort</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -535,4 +545,4 @@ Expected : CommandException will be thrown to show confirmed schedule. No dates 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:02:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:14:58 UTC</div></div></div></body></html>
