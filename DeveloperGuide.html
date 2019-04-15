@@ -527,7 +527,7 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store a <code>Tag</code> list in <code>Personnel Database</code>, which <code>Person</code> can reference. This would allow <code>Personnel Database</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/ModelClassBetterOopDiagram.png" alt="ModelClassBetterOopDiagram" width="800"></span>
 </td>
@@ -555,7 +555,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save the Personnel Database data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -1139,14 +1139,44 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.9. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-storing-duty-points-of-each-person"><a class="link" href="#aspect-storing-duty-points-of-each-person">Aspect: Storing duty points of each person</a></h5>
-<div class="paragraph">
-<p>Alternative 1 (current choice):</p>
-</div>
+<h5 id="aspect-storage-of-duty-issues"><a class="link" href="#aspect-storage-of-duty-issues">Aspect: storage of Duty issues</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p>Stored in external <code>DutyStorage</code> object with HashMap attribute.</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>Duty</code> class also plays the role of <code>DutyDate</code> class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: one less layer for simplicity</p>
+</li>
+<li>
+<p>Cons: less flexible for extension of the project, hard to ensure that each <code>DutyMonth</code> contains the correct number of <code>Duty</code> objects</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> create a separate <code>DutyDate</code> class that contains <code>Duty</code> as an attribute</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy indexing and reference for UI and other purposes</p>
+</li>
+<li>
+<p>Cons: <code>DutyDate</code> class does not have other roles, can be redundant</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-storing-duty-points-of-each-person"><a class="link" href="#aspect-storing-duty-points-of-each-person">Aspect: Storing duty points of each person</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Stored in external <code>DutyStorage</code> object with HashMap attribute.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1158,15 +1188,8 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Alternative 2:</p>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p>Enable <code>Person</code> class to contain duty related information. For example, adding a duty point attribute to <code>Person</code>.</p>
+<p><strong>Alternative 2:</strong> Enable <code>Person</code> class to contain duty related information. For example, adding a duty point attribute to <code>Person</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1703,7 +1726,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
+<p><a href="https://github.com/CS2103-AY1819S2-W15-4/main/blob/master/src/main/java/seedu/address/logic/parser/PersonnelDatabaseParser.java"><code>PersonnelDatabaseParser</code></a> is responsible for analyzing command words.</p>
 </li>
 </ul>
 </div>
@@ -1713,7 +1736,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the switch statement in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
+<p>Modify the switch statement in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/blob/master/src/main/java/seedu/address/logic/parser/PersonnelDatabaseParser.java"><code>PersonnelDatabaseParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
 </li>
 <li>
 <p>Add new tests for each of the aliases that you have added.</p>
@@ -1763,13 +1786,13 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> and the <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> API need to be updated.</p>
+<p>The <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> and the <a href="https://github.com/CS2103-AY1819S2-W15-4/main/blob/master/src/main/java/seedu/address/model/PersonnelDatabase.java"><code>PersonnelDatabase</code></a> API need to be updated.</p>
 </li>
 <li>
 <p>Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?</p>
 </li>
 <li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
+<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S2-W15-4/main/blob/master/src/main/java/seedu/address/model/PersonnelDatabase.java"><code>PersonnelDatabase</code></a> and <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/PersonnelDatabase.java"><code>PersonnelDatabase</code></a> allows you to update a person, and <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
 </li>
 </ul>
 </div>
@@ -1779,10 +1802,10 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/AddressBook.java"><code>PersonnelDatabase</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
 </li>
 <li>
-<p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>AddressBook#removeTag(Tag)</code>.</p>
+<p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>PersonnelDatabase#removeTag(Tag)</code>.</p>
 </li>
 <li>
 <p>Add new tests for each of the new public methods that you have added.</p>
@@ -1802,7 +1825,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 </div>
 <h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your personnel database application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1934,7 +1957,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p>The unit tests for <code>ResultDisplay</code> can be modified to include verification of the color.</p>
 </li>
 <li>
-<p>The system tests <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest#assertCommandBoxShowsDefaultStyle() and AddressBookSystemTest#assertCommandBoxShowsErrorStyle()</code></a> to include verification for <code>ResultDisplay</code> as well.</p>
+<p>The system tests <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/systemtests/PersonnelDatabaseSystemTest.java"><code>PersonnelDatabaseSystemTest#assertCommandBoxShowsDefaultStyle() and PersonnelDatabaseSystemTest#assertCommandBoxShowsErrorStyle()</code></a> to include verification for <code>ResultDisplay</code> as well.</p>
 </li>
 </ul>
 </div>
@@ -2000,13 +2023,13 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p>Modify the constructor of <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
 </li>
 <li>
-<p>Use <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
+<p>Use <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handlePersonnelDatabaseChangedEvent(PersonnelDatabaseChangedEvent)</code></a> to update the number of persons whenever there are new changes to the personnel database.</p>
 </li>
 <li>
 <p>For tests, modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/guitests/guihandles/StatusBarFooterHandle.java"><code>StatusBarFooterHandle</code></a> by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.</p>
 </li>
 <li>
-<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
+<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/systemtests/PersonnelDatabaseSystemTest.java"><code>PersonnelDatabaseSystemTest</code></a> to also verify the new total number of persons status bar.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/803">PR</a> for the full solution.</p>
@@ -2023,7 +2046,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 <h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the address book to the cloud. However, the current implementation of the application constantly saves the address book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the address book storage.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the personnel database to the cloud. However, the current implementation of the application constantly saves the address book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the personnel database storage.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2040,7 +2063,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the address book can be saved in a fixed temporary location.</p>
+<p>Add a new method <code>backupPersonnelDatabase(ReadOnlyPersonnelDatabase)</code>, so that the personnel database can be saved in a fixed temporary location.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -2050,10 +2073,10 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="ulist">
 <ul>
 <li>
-<p>Add the API method in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
+<p>Add the API method in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/storage/PersonnelDatabaseStorage.java"><code>PersonnelDatabaseStorage</code></a> interface.</p>
 </li>
 <li>
-<p>Implement the logic in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> and <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/storage/JsonAddressBookStorage.java"><code>JsonAddressBookStorage</code></a> class.</p>
+<p>Implement the logic in <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> and <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/storage/JsonPersonnelDatabaseStorage.java"><code>JsonPersonnelDatabaseStorage</code></a> class.</p>
 </li>
 </ul>
 </div>
@@ -2082,7 +2105,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
 </div>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are a software maintainer for <code>addressbook</code>, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible <code>remark</code> field for each contact, rather than relying on tags alone. After designing the specification for the <code>remark</code> command, you are convinced that this feature is worth implementing. Your job is to implement the <code>remark</code> command.</p>
+<p><strong>Scenario:</strong> You are a software maintainer for <code>personneldatabase</code>, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible <code>remark</code> field for each contact, rather than relying on tags alone. After designing the specification for the <code>remark</code> command, you are convinced that this feature is worth implementing. Your job is to implement the <code>remark</code> command.</p>
 </div>
 <div class="sect3">
 <h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
@@ -2122,7 +2145,7 @@ Removes the remark for the first person.</p>
 <p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/commands/Command.java"><code>Command</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/parser/PersonnelDatabaseParser.java"><code>PersonnelDatabaseParser</code></a> to accept a <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2135,7 +2158,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandTest</code> that tests that <code>execute()</code> throws an Exception.</p>
 </li>
 <li>
-<p>Add new test method to <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
+<p>Add new test method to <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/seedu/address/logic/parser/PersonnelDatabaseParserTest.java"><code>PersonnelDatabaseParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2157,7 +2180,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/main/java/seedu/address/logic/parser/PersonnelDatabaseParser.java"><code>PersonnelDatabaseParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
@@ -2174,7 +2197,7 @@ Removes the remark for the first person.</p>
 for <code>RemarkCommandParser</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S2-W15-4/main/src/test/java/seedu/address/logic/parser/PersonnelDatabaseParserTest.java"><code>PersonnelDatabaseParserTest</code></a> to test that the correct command is generated according to the user input.</p>
 </li>
 </ol>
 </div>
@@ -2280,7 +2303,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Fix <code>invalidAndValidPersonAddressBook.json</code>, <code>typicalPersonsPersonnelDatabase.json</code>, <code>validAddressBook.json</code> etc., such that the JSON tests will not fail due to a missing <code>remark</code> field.</p>
+<p>Fix <code>invalidAndValidPersonPersonnelDatabase.json</code>, <code>typicalPersonsPersonnelDatabase.json</code>, <code>validPersonnelDatabase.json</code> etc., such that the JSON tests will not fail due to a missing <code>remark</code> field.</p>
 </li>
 </ol>
 </div>
@@ -2589,18 +2612,53 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>PersonnelDatabase already has confirmed duty schedule</p>
+</li>
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>PersonnelDatabase shows a list of persons</p>
+</li>
+<li>
+<p>User requests to delete a specific person in the list</p>
+</li>
+<li>
+<p>PersonnelDatabase deletes the person</p>
+</li>
+<li>
+<p>PersonnelDatabase deletes the confirmed duty schedule</p>
+</li>
+<li>
+<p>PersonnelDatabase asks the user to schedule the duties again</p>
 <div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<p>Use case ends.</p>
 </div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. PersonnelDatabase shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 3.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-3-admin-add-person" class="discrete">Use case 3 (Admin): Add person</h3>
 <div class="paragraph">
@@ -2640,35 +2698,94 @@ Use case ends.</p>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see duties planned for the current month.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows the calendar of the current month with all the duties.</p>
+</li>
+<li>
+<p>User requests to see duties planned for the next month.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows the calendar of the next month with all the duties.</p>
 <div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<p>Use case ends.</p>
 </div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. There are no duties planned for the current month.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. PersonnelDatabase still shows the calendar of the current month, but without the duties.</p>
+<div class="paragraph">
+<p>Use case resumes at step 3.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-6-admin-see-duties-assigned-to-specific-user" class="discrete">Use case 6 (Admin): See duties assigned to specific user</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all the duties assigned to a specific user.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows all the duties assigned to the specific user</p>
 <div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<p>Use case ends.</p>
 </div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The user does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. PersonnelDatabase shows an error message indicating that no such user is found.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2b. The user does not have any duties.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. PersonnelDatabase shows an error message indicating that the user is not assigned to any duties.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-7-admin-schedule-duties" class="discrete">Use case 7 (Admin): Schedule duties</h3>
 <div class="paragraph">
@@ -2725,18 +2842,51 @@ Use case ends.</p>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see his own duties.</p>
+</li>
+<li>
+<p>PersonnelDatabase shows all the duties the user is assigned to.</p>
 <div class="paragraph">
-<p>1.
-2.
-3.
-4.</p>
+<p>Use case ends.</p>
 </div>
-<div class="paragraph">
-<p>+
-Use case ends.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The user is the master admin.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. PersonnelDatabase reminds the user that the master admin cannot be assigned to duties.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2b. The user is not assigned to any duties.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. PersonnelDatabase shows an error message indicating that the user is not assigned to any duties.</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-11-general-user-block-some-dates-for-duties-next-month" class="discrete">Use case 11 (General user): Block some dates for duties next month</h3>
 <div class="paragraph">
@@ -2975,4 +3125,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:05:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:11:49 UTC</div></div></div></body></html>
